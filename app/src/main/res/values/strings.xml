@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">ОНКОР</string>
+    <string name="fio">ФИО</string>
+    <string name="snils">СНИЛС</string>
+    <string name="lpy">ЛПУ наблюдения</string>
+    <string name="profile">Профиль</string>
+    <string name="found">Войти</string>
+    <string name="exit">Выйти</string>
+    <string name="all">Все</string>
+    <string name="protocols">Протоколы</string>
+    <string name="main">Главная</string>
+    <string name="visits">Посещения</string>
+    <string name="dispensaryobservation">Диспансер</string>
+    <string name="notificationsString">Уведомления</string>
+</resources>
