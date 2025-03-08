@@ -23,7 +23,7 @@ class ProtocolsMainAdapter(private val protocols: List<ProtocolFile>) : Recycler
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         if (protocols.isNotEmpty()) {
             val index = protocols.size - getItemCount() + position
-            holder.textView.text = protocols[index].info.lpu
+            holder.textView.text = protocols[index].info.investigationName
         }
     }
 

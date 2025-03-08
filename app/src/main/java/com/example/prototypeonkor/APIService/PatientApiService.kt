@@ -9,6 +9,7 @@ data class ProtocolFile(
 )
 
 data class ProtocolInfo(
+    val investigationName : String,
     val doctorName: String,
     val date: String,
     val time: String,

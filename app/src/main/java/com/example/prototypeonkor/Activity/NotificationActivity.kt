@@ -5,10 +5,8 @@ import android.os.Bundle
 import android.widget.ArrayAdapter
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.lifecycle.findViewTreeLifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.prototypeonkor.APIService.SnilsRequest
@@ -61,10 +59,10 @@ class NotificationActivity : AppCompatActivity() {
             val currentDate = LocalDate.now()
             val date = LocalDate.parse(protocol.info.date)
             val diff = ChronoUnit.DAYS.between(currentDate, date)
-            if (diff in 1..5)
-            {
-                notifList.add("Уважаемый пользователь, на дату ${protocol.info.date} назначен поход к врачу. Лечащий врач ${protocol.info.doctorName}.")
-            }
+            //if (diff in 1..5)
+            //{
+            notifList.add("\uD83D\uDD14 Вам назначен поход к врачу:\n      Иccледование ${protocol.info.investigationName} \n      Дата ${protocol.info.date} \n      Время: ${protocol.info.time} \n      Лечащий врач: ${protocol.info.doctorName} ")
+            //}
         }
 
         withContext(Dispatchers.Main) {

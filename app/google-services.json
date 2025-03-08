@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "950814429200",
+    "project_id": "prototypeonkor",
+    "storage_bucket": "prototypeonkor.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:950814429200:android:060355f6682f54b06fba95",
+        "android_client_info": {
+          "package_name": "com.example.prototypeonkor"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVl31yFIRRe_dFRW57hWF0gtJs7tvejNw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
