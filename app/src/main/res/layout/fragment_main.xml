@@ -8,8 +8,10 @@
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginHorizontal="25dp"
+        android:layout_marginTop="25dp"
+        android:text="Главная"
+        android:textColor="@color/white"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -17,13 +19,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="415dp"
         android:layout_height="185dp"
-        android:layout_marginTop="78dp"
+        android:layout_marginTop="20dp"
         android:background="@xml/fragmentinfo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/textView">
 
         <LinearLayout
             android:layout_width="318dp"
@@ -67,15 +70,16 @@
             android:layout_marginEnd="10dp"
             android:background="@drawable/next" />
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/linearLayout4"
         android:layout_width="415dp"
         android:layout_height="185dp"
-        android:layout_marginTop="282dp"
+        android:layout_marginTop="15dp"
         android:background="@xml/fragmentinfo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
 
         <LinearLayout
             android:layout_width="0dp"
@@ -167,15 +171,16 @@
             android:layout_marginEnd="10dp"
             android:background="@drawable/next" />
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/linearLayout3"
         android:layout_width="415dp"
         android:layout_height="185dp"
-        android:layout_marginTop="483dp"
+        android:layout_marginTop="15dp"
         android:background="@xml/fragmentinfo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
 
         <LinearLayout
             android:layout_width="0dp"
@@ -194,10 +199,10 @@
                 android:textStyle="bold" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:layout_marginTop="18dp"
                 android:id="@+id/mainProtocolsRec"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginTop="18dp"
                 android:overScrollMode="never" />
         </LinearLayout>
 
