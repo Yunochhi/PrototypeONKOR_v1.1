@@ -1,5 +1,6 @@
 package com.example.prototypeonkor.Activity
 
+import android.annotation.SuppressLint
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
@@ -13,8 +14,6 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import com.example.prototypeonkor.APIService.Notification
-import com.example.prototypeonkor.APIService.NotificationRequest
 import com.example.prototypeonkor.APIService.SnilsRequest
 import com.example.prototypeonkor.Class.RetrofitInstance
 import com.example.prototypeonkor.Fragments.DispancerFragment
@@ -33,7 +32,7 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityMainBinding
     private var currentFragment: Fragment? = null
-    private val CHANNEL_ID = "my_channel_id"
+    private val CHANNEL_ID = "Notification"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,6 +40,7 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(binding.root)
         createNotificationChannel()
+        replaceFragment(MainFragment(), R.id.fragment_container)
 
         lifecycleScope.launch {
             pullNotifRec()
@@ -51,8 +51,6 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, 0)
             insets
         }
-
-        replaceFragment(MainFragment(), R.id.fragment_container)
 
         binding.actionBtn.setOnClickListener {
             val intent = Intent(this, ProfileActivity::class.java)
@@ -100,32 +98,16 @@ class MainActivity : AppCompatActivity() {
         val protocols = withContext(Dispatchers.IO) {
             RetrofitInstance.apiService.getProtocols(snilsRequest)
         }
-        val notifList = withContext(Dispatchers.IO)
-        {
-            RetrofitInstance.apiService.getNotifications(snilsRequest)
-        }
+
         for (protocol in protocols) {
             val currentDate = LocalDate.now()
             val date = LocalDate.parse(protocol.info.date)
             val diff = ChronoUnit.DAYS.between(currentDate, date)
 
-            val notificationContent = "Лечащий врач: ${protocol.info.doctorName} \n" + "Дата: ${protocol.info.date} \n" + "Время: ${protocol.info.time}"
-            val notification = Notification("Напоминание о визите!", notificationContent)
-            val notificationRequest = NotificationRequest(snilsRequest.snils, notification)
-
-            if (notifList.contains(notification))
-            {
-                return
-            }
-
             if (diff in 1..2) {
-                withContext(Dispatchers.IO)
-                {
-                    RetrofitInstance.apiService.addNotification(notificationRequest)
-                }
-            }
-
+            val notificationContent = "Лечащий врач: ${protocol.info.doctorName} \n" + "Дата: ${protocol.info.date} \n" + "Время: ${protocol.info.time}"
             sendNotification(notificationContent)
+            }
         }
     }
 
@@ -135,34 +117,21 @@ class MainActivity : AppCompatActivity() {
         notificationManager.notify(System.currentTimeMillis().toInt(), notification)
     }
 
+    @SuppressLint("ObsoleteSdkInt")
     private fun createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val name = "MyChannel"
-            val description = "Channel for my notifications"
+            val name = "Notification"
+            val description = "Notification"
             val importance = NotificationManager.IMPORTANCE_DEFAULT
-            val channel = NotificationChannel(CHANNEL_ID, name, importance).apply {
-                this.description = description
-            }
-
-            val notificationManager: NotificationManager =
-                getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            val channel = NotificationChannel(CHANNEL_ID, name, importance).apply { this.description = description }
+            val notificationManager: NotificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             notificationManager.createNotificationChannel(channel)
         }
     }
 
     private fun replaceFragment(fragment: Fragment, containerId: Int) {
-        currentFragment?.let {
-            supportFragmentManager.beginTransaction()
-                .hide(it)
-                .commit()
-        }
-        if (!fragment.isAdded) {
-            supportFragmentManager.beginTransaction()
-                .replace(containerId, fragment)
-                .commit()
-        }
+        currentFragment?.let { supportFragmentManager.beginTransaction().hide(it).commit() }
+        if (!fragment.isAdded) { supportFragmentManager.beginTransaction().replace(containerId, fragment).commit() }
         currentFragment = fragment
     }
 }
-
-
