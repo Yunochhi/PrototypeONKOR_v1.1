@@ -13,6 +13,8 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import com.example.prototypeonkor.APIService.Notification
+import com.example.prototypeonkor.APIService.NotificationRequest
 import com.example.prototypeonkor.APIService.SnilsRequest
 import com.example.prototypeonkor.Class.RetrofitInstance
 import com.example.prototypeonkor.Fragments.DispancerFragment
@@ -25,6 +27,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.time.LocalDate
+import java.time.temporal.ChronoUnit
 
 class MainActivity : AppCompatActivity() {
 
@@ -97,16 +100,32 @@ class MainActivity : AppCompatActivity() {
         val protocols = withContext(Dispatchers.IO) {
             RetrofitInstance.apiService.getProtocols(snilsRequest)
         }
-
+        val notifList = withContext(Dispatchers.IO)
+        {
+            RetrofitInstance.apiService.getNotifications(snilsRequest)
+        }
         for (protocol in protocols) {
             val currentDate = LocalDate.now()
             val date = LocalDate.parse(protocol.info.date)
-            //val diff = ChronoUnit.DAYS.between(currentDate, date)
+            val diff = ChronoUnit.DAYS.between(currentDate, date)
 
-            //if (diff in 1..5) {
             val notificationContent = "Лечащий врач: ${protocol.info.doctorName} \n" + "Дата: ${protocol.info.date} \n" + "Время: ${protocol.info.time}"
+            val notification = Notification("Напоминание о визите!", notificationContent)
+            val notificationRequest = NotificationRequest(snilsRequest.snils, notification)
+
+            if (notifList.contains(notification))
+            {
+                return
+            }
+
+            if (diff in 1..2) {
+                withContext(Dispatchers.IO)
+                {
+                    RetrofitInstance.apiService.addNotification(notificationRequest)
+                }
+            }
+
             sendNotification(notificationContent)
-            //}
         }
     }
 
