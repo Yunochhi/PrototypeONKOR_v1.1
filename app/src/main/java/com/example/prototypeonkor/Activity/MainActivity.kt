@@ -1,5 +1,6 @@
 package com.example.prototypeonkor.Activity
 
+import android.annotation.SuppressLint
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
@@ -38,6 +39,7 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(binding.root)
         createNotificationChannel()
+        replaceFragment(MainFragment(), R.id.fragment_container)
 
         lifecycleScope.launch {
             pullNotifRec()
@@ -48,8 +50,6 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, 0)
             insets
         }
-
-        replaceFragment(MainFragment(), R.id.fragment_container)
 
         binding.actionBtn.setOnClickListener {
             val intent = Intent(this, ProfileActivity::class.java)
@@ -116,34 +116,21 @@ class MainActivity : AppCompatActivity() {
         notificationManager.notify(System.currentTimeMillis().toInt(), notification)
     }
 
+    @SuppressLint("ObsoleteSdkInt")
     private fun createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val name = "MyChannel"
             val description = "Channel for my notifications"
             val importance = NotificationManager.IMPORTANCE_DEFAULT
-            val channel = NotificationChannel(CHANNEL_ID, name, importance).apply {
-                this.description = description
-            }
-
-            val notificationManager: NotificationManager =
-                getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            val channel = NotificationChannel(CHANNEL_ID, name, importance).apply { this.description = description }
+            val notificationManager: NotificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             notificationManager.createNotificationChannel(channel)
         }
     }
 
     private fun replaceFragment(fragment: Fragment, containerId: Int) {
-        currentFragment?.let {
-            supportFragmentManager.beginTransaction()
-                .hide(it)
-                .commit()
-        }
-        if (!fragment.isAdded) {
-            supportFragmentManager.beginTransaction()
-                .replace(containerId, fragment)
-                .commit()
-        }
+        currentFragment?.let { supportFragmentManager.beginTransaction().hide(it).commit() }
+        if (!fragment.isAdded) { supportFragmentManager.beginTransaction().replace(containerId, fragment).commit() }
         currentFragment = fragment
     }
 }
-
-
