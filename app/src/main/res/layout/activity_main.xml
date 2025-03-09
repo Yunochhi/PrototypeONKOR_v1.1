@@ -89,7 +89,7 @@
         android:background="@xml/menucolor"
         app:itemBackground="@xml/menucolor"
         app:itemIconTint="@color/white"
-        app:itemRippleColor="@color/grey"
+        app:itemRippleColor="@color/white"
         app:itemTextColor="@color/white"
         app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"

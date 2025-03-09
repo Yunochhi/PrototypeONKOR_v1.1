@@ -32,7 +32,7 @@
                 android:layout_height="wrap_content"
                 android:text="Файл"
                 android:textColor="@color/white"
-                android:textSize="18sp"
+                android:textSize="17sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent" />
         </LinearLayout>
@@ -46,7 +46,6 @@
                 android:id="@+id/fileLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
                 android:text="Дата:"
                 android:textColor="@color/white"
                 android:textSize="18sp"
@@ -59,7 +58,7 @@
                 android:layout_marginStart="8dp"
                 android:text="Дата"
                 android:textColor="@color/white"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent" />
         </LinearLayout>
@@ -87,7 +86,7 @@
                 android:layout_marginStart="8dp"
                 android:text="Время"
                 android:textColor="@color/white"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 android:textStyle="bold" />
         </LinearLayout>
 
@@ -95,8 +94,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="5dp"
-            >
+            android:layout_marginTop="5dp">
 
             <TextView
                 android:id="@+id/titleLabel"
@@ -106,7 +104,6 @@
                 android:textColor="@color/white"
                 android:textSize="18sp"
                 android:textStyle="bold" />
-
             <TextView
                 android:id="@+id/titleTextView"
                 android:layout_width="match_parent"
@@ -114,17 +111,14 @@
                 android:layout_marginStart="8dp"
                 android:text="Название"
                 android:textColor="@color/white"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 android:textStyle="bold" />
         </LinearLayout>
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="5dp"
-            >
-
+            android:layout_marginTop="5dp">
             <TextView
                 android:id="@+id/investigationLabel"
                 android:layout_width="wrap_content"
@@ -133,7 +127,6 @@
                 android:textColor="@color/white"
                 android:textSize="18sp"
                 android:textStyle="bold" />
-
             <TextView
                 android:id="@+id/investigationView"
                 android:layout_width="match_parent"
@@ -141,7 +134,7 @@
                 android:layout_marginStart="8dp"
                 android:text="Исследование"
                 android:textColor="@color/white"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 android:textStyle="bold" />
         </LinearLayout>
     </LinearLayout>

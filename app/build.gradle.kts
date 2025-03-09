@@ -52,6 +52,7 @@ dependencies {
     implementation((libs.kotlincoroutinesandroid))
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.navigation.runtime.android)
+    implementation(libs.generativeai)
     testImplementation(libs.junit)
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.analytics.ktx)
