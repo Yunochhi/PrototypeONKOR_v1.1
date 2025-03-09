@@ -13,6 +13,8 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import com.example.prototypeonkor.APIService.Notification
+import com.example.prototypeonkor.APIService.NotificationRequest
 import com.example.prototypeonkor.APIService.SnilsRequest
 import com.example.prototypeonkor.Class.RetrofitInstance
 import com.example.prototypeonkor.Fragments.DispancerFragment
@@ -25,6 +27,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.time.LocalDate
+import java.time.temporal.ChronoUnit
 
 class MainActivity : AppCompatActivity() {
 
@@ -37,10 +40,11 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         enableEdgeToEdge()
         setContentView(binding.root)
+
         createNotificationChannel()
 
         lifecycleScope.launch {
-            pullNotifRec()
+            PullNotifications()
         }
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
@@ -92,7 +96,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    suspend fun pullNotifRec() {
+    suspend fun PullNotifications() {
         val snilsRequest = SnilsRequest("549 711 581 21")
         val protocols = withContext(Dispatchers.IO) {
             RetrofitInstance.apiService.getProtocols(snilsRequest)
@@ -101,32 +105,53 @@ class MainActivity : AppCompatActivity() {
         for (protocol in protocols) {
             val currentDate = LocalDate.now()
             val date = LocalDate.parse(protocol.info.date)
-            //val diff = ChronoUnit.DAYS.between(currentDate, date)
+            val diff = ChronoUnit.DAYS.between(currentDate, date)
 
-            //if (diff in 1..5) {
             val notificationContent = "Лечащий врач: ${protocol.info.doctorName} \n" + "Дата: ${protocol.info.date} \n" + "Время: ${protocol.info.time}"
+            val notification = Notification("Напоминание о визите", notificationContent)
+            val request = NotificationRequest(snilsRequest.snils, notification)
+
+            val notificationList = withContext(Dispatchers.IO) {
+                RetrofitInstance.apiService.getNotifications(snilsRequest)
+            }
+
+            if (notificationList.contains(notification))
+            {
+                return
+            }
+
+            if (diff in 1..2) {
+                withContext(Dispatchers.IO) {
+                    RetrofitInstance.apiService.addNotification(request)
+                }
+            }
+
             sendNotification(notificationContent)
-            //}
         }
     }
 
+    private var notificationId = 0
     private fun sendNotification(content: String) {
-        val notification = NotificationCompat.Builder(this, CHANNEL_ID).setContentTitle("Напоминание о визите!").setContentText(content).setSmallIcon(R.drawable.onkor).build()
-        val notificationManager: NotificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        notificationManager.notify(System.currentTimeMillis().toInt(), notification)
+        val notification = NotificationCompat.Builder(this, CHANNEL_ID)
+            .setContentTitle("Напоминание о визите!")
+            .setContentText(content)
+            .setSmallIcon(R.drawable.onkor)
+            .build()
+
+        val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        notificationManager.notify(notificationId++, notification)
     }
 
     private fun createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val name = "MyChannel"
-            val description = "Channel for my notifications"
-            val importance = NotificationManager.IMPORTANCE_DEFAULT
-            val channel = NotificationChannel(CHANNEL_ID, name, importance).apply {
-                this.description = description
+            val channel = NotificationChannel(
+                CHANNEL_ID,
+                "MyChannel",
+                NotificationManager.IMPORTANCE_DEFAULT
+            ).apply {
+                description = "Channel for my notifications"
             }
-
-            val notificationManager: NotificationManager =
-                getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             notificationManager.createNotificationChannel(channel)
         }
     }

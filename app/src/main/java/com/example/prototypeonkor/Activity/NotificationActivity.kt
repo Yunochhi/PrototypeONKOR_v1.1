@@ -28,7 +28,7 @@ class NotificationActivity : AppCompatActivity() {
         binding = ActivityNotificationBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.backBtn.setOnClickListener(){
+        binding.backBtn.setOnClickListener{
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
@@ -46,22 +46,10 @@ class NotificationActivity : AppCompatActivity() {
 
     suspend fun pullNotifRec()
     {
-        val notifList = mutableListOf<String>()
         val snilsRequest = SnilsRequest("549 711 581 21")
-        val protocols = withContext(Dispatchers.IO)
+        val notifList = withContext(Dispatchers.IO)
         {
-            RetrofitInstance.apiService.getProtocols(snilsRequest)
-        }
-
-        for (protocol in protocols)
-        {
-            val currentDate = LocalDate.now()
-            val date = LocalDate.parse(protocol.info.date)
-            val diff = ChronoUnit.DAYS.between(currentDate, date)
-            //if (diff in 1..5)
-            //{
-            notifList.add("\uD83D\uDD14 Вам назначен поход к врачу:\n      Иccледование ${protocol.info.investigationName} \n      Дата ${protocol.info.date} \n      Время: ${protocol.info.time} \n      Лечащий врач: ${protocol.info.doctorName} ")
-            //}
+            RetrofitInstance.apiService.getNotifications(snilsRequest)
         }
 
         withContext(Dispatchers.Main) {

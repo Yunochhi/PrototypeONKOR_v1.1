@@ -11,7 +11,8 @@ import com.example.prototypeonkor.R
 class ProtocolsMainAdapter(private val protocols: List<ProtocolFile>) : RecyclerView.Adapter<ProtocolsMainAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val textView: TextView = view.findViewById(R.id.textView)
+        val investigationName: TextView = view.findViewById(R.id.nameTextView)
+        val date: TextView = view.findViewById(R.id.dateTextView)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -23,7 +24,8 @@ class ProtocolsMainAdapter(private val protocols: List<ProtocolFile>) : Recycler
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         if (protocols.isNotEmpty()) {
             val index = protocols.size - getItemCount() + position
-            holder.textView.text = protocols[index].info.investigationName
+            holder.investigationName.text = protocols[index].info.lpu
+            holder.date.text = protocols[index].info.date
         }
     }
 

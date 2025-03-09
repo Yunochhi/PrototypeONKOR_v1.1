@@ -1,18 +1,18 @@
 package com.example.prototypeonkor.Adapters
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.prototypeonkor.APIService.ProtocolFile
+import com.example.prototypeonkor.APIService.Notification
 import com.example.prototypeonkor.R
 
-class NotificationsAdapter(private val notifications: MutableList<String>) : RecyclerView.Adapter<NotificationsAdapter.ViewHolder>() {
+class NotificationsAdapter(private val notifications: MutableList<Notification>) : RecyclerView.Adapter<NotificationsAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val textView: TextView = view.findViewById(R.id.textView)
+        val header: TextView = view.findViewById(R.id.headerTextView)
+        val description: TextView = view.findViewById(R.id.DescTextView)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -22,7 +22,9 @@ class NotificationsAdapter(private val notifications: MutableList<String>) : Rec
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.textView.text = notifications[position]
+        holder.header.text = notifications[position].header
+        holder.description.text = notifications[position].description
+
     }
 
     override fun getItemCount(): Int {
