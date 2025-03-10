@@ -10,7 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.prototypeonkor.APIService.SnilsRequest
 import com.example.prototypeonkor.Adapters.NotificationsAdapter
-import com.example.prototypeonkor.Class.HttpClient
+import com.example.prototypeonkor.Class.RetrofitInstance
 import com.example.prototypeonkor.databinding.ActivityNotificationBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -46,7 +46,7 @@ class NotificationActivity : AppCompatActivity() {
     {
         val snilsRequest = SnilsRequest("549 711 581 21")
         val notifList = withContext(Dispatchers.IO) {
-            HttpClient.apiService.getNotifications(snilsRequest)
+            RetrofitInstance.apiService.getNotifications(snilsRequest)
         }
 
         withContext(Dispatchers.Main)

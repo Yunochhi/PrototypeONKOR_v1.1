@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.prototypeonkor.Adapters.ProtocolAdapter
-import com.example.prototypeonkor.Class.HttpClient
+import com.example.prototypeonkor.Class.RetrofitInstance
 import com.example.prototypeonkor.R
 import com.example.prototypeonkor.APIService.SnilsRequest
 import kotlinx.coroutines.Dispatchers
@@ -37,7 +37,7 @@ class ProtocolsFragment : Fragment(R.layout.fragment_protocols) {
             val snilsRequest = SnilsRequest("549 711 581 21")
             val protocols = withContext(Dispatchers.IO)
             {
-                HttpClient.apiService.getProtocols(snilsRequest)
+                RetrofitInstance.apiService.getProtocols(snilsRequest)
             }
 
             if (protocols.isNotEmpty())
