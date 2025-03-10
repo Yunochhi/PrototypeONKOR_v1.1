@@ -10,30 +10,27 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.prototypeonkor.APIService.SnilsRequest
 import com.example.prototypeonkor.Adapters.NotificationsAdapter
-import com.example.prototypeonkor.Class.RetrofitInstance
-import com.example.prototypeonkor.R
+import com.example.prototypeonkor.Class.HttpClient
 import com.example.prototypeonkor.databinding.ActivityNotificationBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.time.LocalDate
-import java.time.temporal.ChronoUnit
 
 class NotificationActivity : AppCompatActivity() {
-    lateinit var binding: ActivityNotificationBinding
+
+    private lateinit var binding: ActivityNotificationBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         binding = ActivityNotificationBinding.inflate(layoutInflater)
+        enableEdgeToEdge()
         setContentView(binding.root)
 
-        binding.backBtn.setOnClickListener{
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
+        binding.backBtn.setOnClickListener {
+            startActivity(Intent(this, MainActivity::class.java))
         }
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(binding.main) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
@@ -44,18 +41,18 @@ class NotificationActivity : AppCompatActivity() {
         }
     }
 
-    suspend fun pullNotifRec()
+    //Вывод уведомлений
+    private suspend fun pullNotifRec()
     {
         val snilsRequest = SnilsRequest("549 711 581 21")
-        val notifList = withContext(Dispatchers.IO)
-        {
-            RetrofitInstance.apiService.getNotifications(snilsRequest)
+        val notifList = withContext(Dispatchers.IO) {
+            HttpClient.apiService.getNotifications(snilsRequest)
         }
 
-        withContext(Dispatchers.Main) {
+        withContext(Dispatchers.Main)
+        {
             binding.notifRec.layoutManager = LinearLayoutManager(this@NotificationActivity)
-            val adapter = NotificationsAdapter(notifList)
-            binding.notifRec.adapter = adapter
+            binding.notifRec.adapter = NotificationsAdapter(notifList)
         }
     }
 }

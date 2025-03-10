@@ -46,7 +46,6 @@ dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.activity)
-    implementation(libs.firebaseMessaging)
     implementation((libs.retrofit))
     implementation((libs.gsonConverter))
     implementation((libs.kotlincoroutinesandroid))
@@ -54,8 +53,7 @@ dependencies {
     implementation(libs.androidx.navigation.runtime.android)
     implementation(libs.generativeai)
     testImplementation(libs.junit)
-    implementation(platform(libs.firebase.bom))
-    implementation(libs.firebase.analytics.ktx)
+
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 }

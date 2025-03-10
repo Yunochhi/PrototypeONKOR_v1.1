@@ -2,8 +2,8 @@ package com.example.prototypeonkor.Activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.view.View
-import android.widget.ProgressBar
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -13,7 +13,7 @@ import com.example.prototypeonkor.databinding.ActivityLoadingBinding
 
 class LoadingActivity : AppCompatActivity() {
 
-    lateinit var binding: ActivityLoadingBinding
+    private lateinit var binding: ActivityLoadingBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,23 +27,20 @@ class LoadingActivity : AppCompatActivity() {
             insets
         }
 
-        simulateLoading(binding.progressBar)
+        simulateLoading()
     }
 
-    private fun simulateLoading(progressBar: ProgressBar) {
-        progressBar.visibility = View.VISIBLE
-        Thread {
-            Thread.sleep(3000)
-            runOnUiThread {
-                progressBar.visibility = View.GONE
-                navigateToSecondActivity()
-            }
-        }.start()
+    private fun simulateLoading()
+    {
+        binding.progressBar.visibility = View.VISIBLE
+        Handler().postDelayed({ binding.progressBar.visibility = View.GONE
+        navigateToAuthorization()
+        }, 3000)
     }
 
-    private fun navigateToSecondActivity() {
-        val intent = Intent(this, AuthorizationActivity::class.java)
-        startActivity(intent)
+    private fun navigateToAuthorization()
+    {
+        startActivity(Intent(this, AuthorizationActivity::class.java))
         finish()
     }
 }

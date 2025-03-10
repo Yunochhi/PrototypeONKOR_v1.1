@@ -8,10 +8,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.prototypeonkor.APIService.ProtocolFile
 import com.example.prototypeonkor.R
 
-class ProtocolAdapter(private val protocols: List<ProtocolFile>) :
-    RecyclerView.Adapter<ProtocolAdapter.ProtocolViewHolder>() {
+class ProtocolAdapter(private val protocols: List<ProtocolFile>) : RecyclerView.Adapter<ProtocolAdapter.ProtocolViewHolder>() {
 
-    class ProtocolViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class ProtocolViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
+    {
         val dateTextView: TextView = itemView.findViewById(R.id.dateTextView)
         val timeTextView: TextView = itemView.findViewById(R.id.timeTextView)
         val titleTextView: TextView = itemView.findViewById(R.id.titleTextView)
@@ -19,21 +19,24 @@ class ProtocolAdapter(private val protocols: List<ProtocolFile>) :
         val investigationView: TextView = itemView.findViewById(R.id.investigationView)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProtocolViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProtocolViewHolder
+    {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.protocol_info, parent, false)
         return ProtocolViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: ProtocolViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ProtocolViewHolder, position: Int)
+    {
         val protocol = protocols[position]
-        holder.dateTextView.text = protocol.info.date
-        holder.timeTextView.text = protocol.info.time
-        holder.titleTextView.text = protocol.info.lpu
-        holder.investigationView.text = protocol.info.investigationName
-        holder.fileTextView.text = protocol.fileName
+        with(holder)
+        {
+            dateTextView.text = protocol.info.date
+            timeTextView.text = protocol.info.time
+            titleTextView.text = protocol.info.lpu
+            investigationView.text = protocol.info.investigationName
+            fileTextView.text = protocol.fileName
+        }
     }
 
-    override fun getItemCount(): Int {
-        return protocols.size
-    }
+    override fun getItemCount() = protocols.size
 }

@@ -1,8 +1,6 @@
 package com.example.prototypeonkor.Activity
 
-import android.app.NotificationChannel
 import android.app.NotificationManager
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
@@ -15,11 +13,8 @@ import androidx.lifecycle.lifecycleScope
 import com.example.prototypeonkor.APIService.Notification
 import com.example.prototypeonkor.APIService.NotificationRequest
 import com.example.prototypeonkor.APIService.SnilsRequest
-import com.example.prototypeonkor.Class.RetrofitInstance
-import com.example.prototypeonkor.Fragments.DispancerFragment
-import com.example.prototypeonkor.Fragments.MainFragment
-import com.example.prototypeonkor.Fragments.ProtocolsFragment
-import com.example.prototypeonkor.Fragments.VisitsFragment
+import com.example.prototypeonkor.Class.HttpClient
+import com.example.prototypeonkor.Fragments.*
 import com.example.prototypeonkor.R
 import com.example.prototypeonkor.databinding.ActivityMainBinding
 import kotlinx.coroutines.Dispatchers
@@ -30,20 +25,17 @@ import java.time.temporal.ChronoUnit
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var binding: ActivityMainBinding
+    private lateinit var binding: ActivityMainBinding
     private var currentFragment: Fragment? = null
-    private val CHANNEL_ID = "NotificationONKOR"
+    private val CHANNEL_ID = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         enableEdgeToEdge()
         setContentView(binding.root)
-        createNotificationChannel()
 
-        lifecycleScope.launch {
-            pullNotifRec()
-        }
+        lifecycleScope.launch { pullNotifRec() }
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -53,51 +45,31 @@ class MainActivity : AppCompatActivity() {
 
         replaceFragment(MainFragment(), R.id.fragment_container)
 
-        binding.actionBtn.setOnClickListener {
-            val intent = Intent(this, ProfileActivity::class.java)
-            startActivity(intent)
+        // Обработка кликов кнопок
+        binding.apply {
+            actionBtn.setOnClickListener { startActivity(Intent(this@MainActivity, ProfileActivity::class.java)) }
+            notificationsBtn.setOnClickListener { startActivity(Intent(this@MainActivity, NotificationActivity::class.java)) }
         }
 
-        binding.notificationsBtn.setOnClickListener{
-            val intent = Intent(this, NotificationActivity::class.java)
-            startActivity(intent)
-        }
-
+        // Обработка кликов навигационного меню
         binding.bottomNavigationBar.setOnNavigationItemSelectedListener { menuItem ->
-            when (menuItem.itemId) {
-                R.id.navigation_protocols -> {
-                    if (currentFragment !is ProtocolsFragment) {
-                        replaceFragment(ProtocolsFragment(), R.id.fragment_container)
-                    }
-                    true
-                }
-                R.id.navigation_visits -> {
-                    if (currentFragment !is VisitsFragment) {
-                        replaceFragment(VisitsFragment(), R.id.fragment_container)
-                    }
-                    true
-                }
-                R.id.navigation_home -> {
-                    if (currentFragment !is MainFragment) {
-                        replaceFragment(MainFragment(), R.id.fragment_container)
-                    }
-                    true
-                }
-                R.id.navigation_dispensaryobservation -> {
-                    if (currentFragment !is DispancerFragment) {
-                        replaceFragment(DispancerFragment(), R.id.fragment_container)
-                    }
-                    true
-                }
-                else -> false
+            val fragment = when (menuItem.itemId)
+            {
+                R.id.navigation_protocols -> ProtocolsFragment()
+                R.id.navigation_visits -> VisitsFragment()
+                R.id.navigation_home -> MainFragment()
+                R.id.navigation_dispensaryobservation -> DispancerFragment()
+                else -> null
             }
+            fragment?.let { replaceFragment(it, R.id.fragment_container) }
+            fragment != null
         }
     }
 
     suspend fun pullNotifRec() {
         val snilsRequest = SnilsRequest("549 711 581 21")
-        val protocols = withContext(Dispatchers.IO) { RetrofitInstance.apiService.getProtocols(snilsRequest) }
-        val notifList = withContext(Dispatchers.IO) { RetrofitInstance.apiService.getNotifications(snilsRequest) }
+        val protocols = withContext(Dispatchers.IO) { HttpClient.apiService.getProtocols(snilsRequest) }
+        val notifList = withContext(Dispatchers.IO) { HttpClient.apiService.getNotifications(snilsRequest) }
 
         for (protocol in protocols) {
             val currentDate = LocalDate.now()
@@ -112,7 +84,7 @@ class MainActivity : AppCompatActivity() {
 
                 if (notifList.none { it.description == notificationContent })
                 {
-                    withContext(Dispatchers.IO) { RetrofitInstance.apiService.addNotification(notificationRequest) }
+                    withContext(Dispatchers.IO) { HttpClient.apiService.addNotification(notificationRequest) }
                 }
 
                 sendNotification(notificationContent)
@@ -120,27 +92,22 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun sendNotification(content: String)
-    {
-        val notification = NotificationCompat.Builder(this, CHANNEL_ID).setContentTitle("Напоминание о визите!").setContentText(content).setSmallIcon(R.drawable.onkor).build()
-        val notificationManager: NotificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+    // Отправка уведомлений
+    private fun sendNotification(content: String) {
+        val notification = NotificationCompat.Builder(this, CHANNEL_ID)
+            .setContentText(content)
+            .setSmallIcon(R.drawable.onkor)
+            .build()
+
+        val notificationManager = getSystemService(NotificationManager::class.java)
         notificationManager.notify(System.currentTimeMillis().toInt(), notification)
     }
 
-    private fun createNotificationChannel()
-    {
-        val name = "NotificationONKOR"
-        val description = "NotificationONKOR"
-        val importance = NotificationManager.IMPORTANCE_DEFAULT
-        val channel = NotificationChannel(CHANNEL_ID, name, importance).apply { this.description = description }
-        val notificationManager: NotificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        notificationManager.createNotificationChannel(channel)
-    }
-
-    private fun replaceFragment(fragment: Fragment, containerId: Int)
-    {
-        currentFragment?.let { supportFragmentManager.beginTransaction().hide(it).commit() }
-        if (!fragment.isAdded) { supportFragmentManager.beginTransaction().replace(containerId, fragment).commit() }
+    //Замена фрагментов меню
+    private fun replaceFragment(fragment: Fragment, containerId: Int) {
+        if (!fragment.isAdded) {
+            supportFragmentManager.beginTransaction().replace(containerId, fragment).commit()
+        }
         currentFragment = fragment
     }
 }

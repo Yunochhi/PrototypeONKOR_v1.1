@@ -1,7 +1,5 @@
 package com.example.prototypeonkor.APIService
 
-import okhttp3.Response
-import okhttp3.ResponseBody
 import retrofit2.http.Body
 import retrofit2.http.POST
 
@@ -11,7 +9,7 @@ data class ProtocolFile(
 )
 
 data class ProtocolInfo(
-    val investigationName : String,
+    val investigationName: String,
     val doctorName: String,
     val date: String,
     val time: String,
@@ -27,15 +25,20 @@ data class Notification(
     val description: String
 )
 
-data class NotificationRequest(val snils: String, val notification: Notification)
+data class NotificationRequest(
+    val snils: String,
+    val notification: Notification
+)
 
-interface PatientApiService {
+interface PatientApiService
+{
+
     @POST("listProtocols")
-    suspend fun getProtocols(@Body SnilsRequest: SnilsRequest): List<ProtocolFile>
+    suspend fun getProtocols(@Body snilsRequest: SnilsRequest): List<ProtocolFile>
 
     @POST("addNotification")
-    suspend fun addNotification(@Body Request: NotificationRequest)
+    suspend fun addNotification(@Body notificationRequest: NotificationRequest)
 
     @POST("notifications")
-    suspend fun getNotifications(@Body SnilsRequest: SnilsRequest): MutableList<Notification>
+    suspend fun getNotifications(@Body snilsRequest: SnilsRequest): MutableList<Notification>
 }

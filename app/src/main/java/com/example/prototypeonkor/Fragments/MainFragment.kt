@@ -1,17 +1,15 @@
 package com.example.prototypeonkor.Fragments
 
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatImageButton
-import androidx.fragment.app.FragmentTransaction
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.prototypeonkor.Adapters.ProtocolsMainAdapter
-import com.example.prototypeonkor.Class.RetrofitInstance
+import com.example.prototypeonkor.Class.HttpClient
 import com.example.prototypeonkor.R
 import com.example.prototypeonkor.APIService.SnilsRequest
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -21,59 +19,37 @@ import kotlinx.coroutines.withContext
 
 class MainFragment : Fragment(R.layout.fragment_main) {
 
-    lateinit var mainProtocolsRec: RecyclerView
+    private lateinit var mainProtocolsRec: RecyclerView
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?)
+    {
         super.onViewCreated(view, savedInstanceState)
-
-        val buttonAllProtocols: AppCompatImageButton = view.findViewById(R.id.buttonAllProtocols)
-        val buttonAllVisits: AppCompatImageButton = view.findViewById(R.id.buttonAllVisits)
-        val buttonAllDispancer: AppCompatImageButton = view.findViewById(R.id.buttonAllDispancer)
 
         mainProtocolsRec = view.findViewById(R.id.mainProtocolsRec)
         mainProtocolsRec.layoutManager = LinearLayoutManager(requireContext())
 
-        buttonAllProtocols.setOnClickListener {
-            val transaction: FragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
-            transaction.replace(R.id.fragment_container, ProtocolsFragment())
-            transaction.addToBackStack(null)
-            transaction.commit()
-            Protocols()
-        }
+        view.findViewById<AppCompatImageButton>(R.id.buttonAllProtocols).setOnClickListener { replaceFragment(ProtocolsFragment()) }
+        view.findViewById<AppCompatImageButton>(R.id.buttonAllVisits).setOnClickListener { replaceFragment(VisitsFragment()) }
+        view.findViewById<AppCompatImageButton>(R.id.buttonAllDispancer).setOnClickListener { replaceFragment(DispancerFragment()) }
 
-        buttonAllVisits.setOnClickListener {
-            val transaction: FragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
-            transaction.replace(R.id.fragment_container, VisitsFragment())
-            transaction.addToBackStack(null)
-            transaction.commit()
-            Visits()
-        }
-
-        buttonAllDispancer.setOnClickListener {
-            val transaction: FragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
-            transaction.replace(R.id.fragment_container, DispancerFragment())
-            transaction.addToBackStack(null)
-            transaction.commit()
-            Dispancer()
-        }
-
-        viewLifecycleOwner.lifecycleScope.launch {
-            fetchProtocols()
-        }
+        viewLifecycleOwner.lifecycleScope.launch { fetchProtocols() }
     }
 
-    private suspend fun fetchProtocols() {
-        try {
+    private suspend fun fetchProtocols()
+    {
+        try
+        {
             val snilsRequest = SnilsRequest("549 711 581 21")
             val protocols = withContext(Dispatchers.IO)
             {
-                RetrofitInstance.apiService.getProtocols(snilsRequest)
+                HttpClient.apiService.getProtocols(snilsRequest)
             }
-            if (protocols.isNotEmpty()) {
+
+            if (protocols.isNotEmpty())
+            {
                 withContext(Dispatchers.Main)
                 {
-                    val adapter = ProtocolsMainAdapter(protocols)
-                    mainProtocolsRec.adapter = adapter
+                    mainProtocolsRec.adapter = ProtocolsMainAdapter(protocols)
                 }
             }
         }
@@ -81,25 +57,25 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         {
             withContext(Dispatchers.Main)
             {
-                Toast.makeText(requireContext(), "${e.message}", Toast.LENGTH_SHORT).show()
-                Log.e("ProtocolsFragment", "${e.message}")
+                Toast.makeText(requireContext(), e.message, Toast.LENGTH_SHORT).show()
             }
         }
     }
 
-    private fun Dispancer() {
-        val bottomNavigationView: BottomNavigationView = requireActivity().findViewById(R.id.bottomNavigationBar)
-        bottomNavigationView.selectedItemId = R.id.navigation_dispensaryobservation
+    private fun replaceFragment(fragment: Fragment)
+    {
+        requireActivity().supportFragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).addToBackStack(null).commit()
+        updateBottomNavigation(fragment)
     }
 
-    private fun Visits() {
+    private fun updateBottomNavigation(fragment: Fragment)
+    {
         val bottomNavigationView: BottomNavigationView = requireActivity().findViewById(R.id.bottomNavigationBar)
-        bottomNavigationView.selectedItemId = R.id.navigation_visits
+        when (fragment)
+        {
+            is ProtocolsFragment -> bottomNavigationView.selectedItemId = R.id.navigation_protocols
+            is VisitsFragment -> bottomNavigationView.selectedItemId = R.id.navigation_visits
+            is DispancerFragment -> bottomNavigationView.selectedItemId = R.id.navigation_dispensaryobservation
+        }
     }
-
-    private fun Protocols() {
-        val bottomNavigationView: BottomNavigationView = requireActivity().findViewById(R.id.bottomNavigationBar)
-        bottomNavigationView.selectedItemId = R.id.navigation_protocols
-    }
-
 }
