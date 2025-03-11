@@ -36,7 +36,7 @@ class AppointmentAdapter(private val appointments: List<Appointment>) : Recycler
             status.text = when (appointment.status) {
                 AppointmentStatus.COMPLETED -> Html.fromHtml("Прошёл <font color=\"#4CAF50\">✔</font>")
                 AppointmentStatus.MISSED -> Html.fromHtml("Не прошёл <font color=\"#F44336\">❌</font>")
-                AppointmentStatus.PLANNED -> Html.fromHtml("В ожидании <font color=\"#2196F3\">🕒</font>")
+                AppointmentStatus.PLANNED -> Html.fromHtml("В ожидании <font color=\"#2196F3\">\uD83D\uDCC5</font>")
             }
 
         }
