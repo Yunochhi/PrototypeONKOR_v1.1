@@ -35,8 +35,7 @@ class ProtocolsFragment : Fragment(R.layout.fragment_protocols) {
     private suspend fun fetchProtocols() {
         try {
             val snilsRequest = SnilsRequest("549 711 581 21")
-            val protocols = withContext(Dispatchers.IO)
-            {
+            val protocols = withContext(Dispatchers.IO) {
                 RetrofitInstance.apiService.getProtocols(snilsRequest)
             }
 
@@ -44,7 +43,7 @@ class ProtocolsFragment : Fragment(R.layout.fragment_protocols) {
             {
                 withContext(Dispatchers.Main)
                 {
-                    protocolAdapter = ProtocolAdapter(protocols)
+                    protocolAdapter = ProtocolAdapter(protocols, requireContext())
                     recyclerView.adapter = protocolAdapter
                 }
             }
