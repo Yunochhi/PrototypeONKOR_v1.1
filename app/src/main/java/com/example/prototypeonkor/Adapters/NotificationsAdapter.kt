@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.prototypeonkor.APIService.Notification
+import com.example.prototypeonkor.Class.Notification
 import com.example.prototypeonkor.R
 
 class NotificationsAdapter(private val notifications: List<Notification>) : RecyclerView.Adapter<NotificationsAdapter.ViewHolder>() {

@@ -1,5 +1,7 @@
 package com.example.prototypeonkor.APIService
 
+import com.example.prototypeonkor.Class.Appointment
+import com.example.prototypeonkor.Class.Notification
 import retrofit2.http.Body
 import retrofit2.http.POST
 
@@ -20,11 +22,6 @@ data class SnilsRequest(
     val snils: String
 )
 
-data class Notification(
-    val header: String,
-    val description: String
-)
-
 data class NotificationRequest(
     val snils: String,
     val notification: Notification
@@ -32,7 +29,6 @@ data class NotificationRequest(
 
 interface PatientApiService
 {
-
     @POST("listProtocols")
     suspend fun getProtocols(@Body snilsRequest: SnilsRequest): List<ProtocolFile>
 
@@ -41,4 +37,7 @@ interface PatientApiService
 
     @POST("notifications")
     suspend fun getNotifications(@Body snilsRequest: SnilsRequest): MutableList<Notification>
+
+    @POST("appointments")
+    suspend fun getAppointments(@Body snilsRequest: SnilsRequest): List<Appointment>
 }

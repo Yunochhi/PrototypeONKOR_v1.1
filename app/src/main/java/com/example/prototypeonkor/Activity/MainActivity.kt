@@ -11,6 +11,7 @@ import androidx.core.app.NotificationCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.example.prototypeonkor.APIService.*
+import com.example.prototypeonkor.Class.Notification
 import com.example.prototypeonkor.Class.RetrofitInstance
 import com.example.prototypeonkor.Fragments.*
 import com.example.prototypeonkor.R
@@ -33,7 +34,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         createNotificationChannel()
 
-        lifecycleScope.launch { pullNotifRec() }
+        lifecycleScope.launch {
+            pullNotifRec()
+        }
 
         binding.actionBtn.setOnClickListener { startActivity(Intent(this, ProfileActivity::class.java)) }
         binding.notificationsBtn.setOnClickListener { startActivity(Intent(this, NotificationActivity::class.java)) }

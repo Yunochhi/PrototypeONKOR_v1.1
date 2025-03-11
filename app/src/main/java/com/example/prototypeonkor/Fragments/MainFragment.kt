@@ -12,6 +12,7 @@ import com.example.prototypeonkor.Adapters.ProtocolsMainAdapter
 import com.example.prototypeonkor.Class.RetrofitInstance
 import com.example.prototypeonkor.R
 import com.example.prototypeonkor.APIService.SnilsRequest
+import com.example.prototypeonkor.Adapters.AppointmentsMainAdapter
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -20,23 +21,28 @@ import kotlinx.coroutines.withContext
 class MainFragment : Fragment(R.layout.fragment_main) {
 
     private lateinit var mainProtocolsRec: RecyclerView
-
+    private lateinit var mainVisitsRec: RecyclerView
     override fun onViewCreated(view: View, savedInstanceState: Bundle?)
     {
         super.onViewCreated(view, savedInstanceState)
 
         mainProtocolsRec = view.findViewById(R.id.mainProtocolsRec)
-        mainProtocolsRec.layoutManager = LinearLayoutManager(requireContext())
+        mainVisitsRec = view.findViewById(R.id.mainVisitsRec)
 
         view.findViewById<AppCompatImageButton>(R.id.buttonAllProtocols).setOnClickListener { replaceFragment(ProtocolsFragment()) }
         view.findViewById<AppCompatImageButton>(R.id.buttonAllVisits).setOnClickListener { replaceFragment(VisitsFragment()) }
         view.findViewById<AppCompatImageButton>(R.id.buttonAllDispancer).setOnClickListener { replaceFragment(DispancerFragment()) }
 
-        viewLifecycleOwner.lifecycleScope.launch { fetchProtocols() }
+        mainProtocolsRec.layoutManager = LinearLayoutManager(requireContext())
+        mainVisitsRec.layoutManager = LinearLayoutManager(requireContext())
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            fetchProtocols()
+            fetchAppointments()
+        }
     }
 
-    private suspend fun fetchProtocols()
-    {
+    private suspend fun fetchProtocols() {
         try
         {
             val snilsRequest = SnilsRequest("549 711 581 21")
@@ -50,6 +56,32 @@ class MainFragment : Fragment(R.layout.fragment_main) {
                 withContext(Dispatchers.Main)
                 {
                     mainProtocolsRec.adapter = ProtocolsMainAdapter(protocols)
+                }
+            }
+        }
+        catch (e: Exception)
+        {
+            withContext(Dispatchers.Main)
+            {
+                Toast.makeText(requireContext(), e.message, Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    private suspend fun fetchAppointments() {
+        try
+        {
+            val snilsRequest = SnilsRequest("549 711 581 21")
+            val appointments = withContext(Dispatchers.IO)
+            {
+                RetrofitInstance.apiService.getAppointments(snilsRequest)
+            }
+
+            if (appointments.isNotEmpty())
+            {
+                withContext(Dispatchers.Main)
+                {
+                    mainVisitsRec.adapter = AppointmentsMainAdapter(appointments)
                 }
             }
         }
