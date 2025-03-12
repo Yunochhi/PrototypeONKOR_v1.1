@@ -2,7 +2,6 @@ package com.example.prototypeonkor.Activity
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
@@ -50,11 +49,11 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
-
         replaceFragment(MainFragment())
     }
 
-    private suspend fun pullNotifRec() {
+    private suspend fun pullNotifRec()
+    {
         val snils = SnilsRequest("549 711 581 21")
         val protocols = withContext(Dispatchers.IO) { RetrofitInstance.apiService.getProtocols(snils) }
         val existingNotifs = withContext(Dispatchers.IO) { RetrofitInstance.apiService.getNotifications(snils) }
@@ -71,7 +70,8 @@ class MainActivity : AppCompatActivity() {
             }
     }
 
-    private fun sendNotification(content: String) {
+    private fun sendNotification(content: String)
+    {
         val notification = NotificationCompat.Builder(this, CHANNEL_ID)
             .setContentText(content)
             .setSmallIcon(R.drawable.onkor)
@@ -81,12 +81,14 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    private fun createNotificationChannel() {
+    private fun createNotificationChannel()
+    {
         getSystemService(NotificationManager::class.java)
             ?.createNotificationChannel(NotificationChannel(CHANNEL_ID, CHANNEL_ID, NotificationManager.IMPORTANCE_DEFAULT))
     }
 
-    private fun replaceFragment(fragment: Fragment) {
+    private fun replaceFragment(fragment: Fragment)
+    {
         supportFragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit()
     }
 }

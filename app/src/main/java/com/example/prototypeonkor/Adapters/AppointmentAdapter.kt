@@ -43,9 +43,7 @@ class AppointmentAdapter(private val appointments: List<Appointment>) : Recycler
                 AppointmentStatus.MISSED -> Html.fromHtml("Не прошёл <font color=\"#F44336\">❌</font>")
                 AppointmentStatus.PLANNED -> Html.fromHtml("В ожидании <font color=\"#2196F3\">🕒</font>")
             }
-
         }
     }
-
     override fun getItemCount() = appointments.size
 }
