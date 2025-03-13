@@ -11,7 +11,7 @@
         android:layout_marginHorizontal="25dp"
         android:layout_marginTop="25dp"
         android:text="Главная"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -39,7 +39,7 @@
                 android:layout_width="170dp"
                 android:layout_height="wrap_content"
                 android:text="Диспансерное наблюдение"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="23sp"
                 android:textStyle="bold" />
 
@@ -48,7 +48,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="18dp"
                 android:text="ЛПУ:"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -57,7 +57,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="Следующая явка:"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -93,7 +93,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/visits"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="23sp"
                 android:textStyle="bold" />
 
@@ -136,7 +136,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/protocols"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="23sp"
                 android:textStyle="bold" />
 

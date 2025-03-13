@@ -14,7 +14,7 @@
         android:layout_marginHorizontal="10dp"
         android:layout_marginTop="10dp"
         android:text="Динспансерные посещения"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
