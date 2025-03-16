@@ -12,7 +12,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="210dp"
+        android:layout_height="150dp"
         android:background="@xml/fragmentinfo"
         android:gravity="center_vertical"
         android:orientation="vertical"
@@ -39,7 +39,7 @@
                 android:layout_marginStart="8dp"
                 android:text="ЛПУ"
                 android:textColor="@color/black"
-                android:textSize="18sp"
+                android:textSize="17sp"
                 android:textStyle="bold" />
         </LinearLayout>
         <LinearLayout
@@ -63,7 +63,7 @@
                 android:layout_marginStart="8dp"
                 android:text="Повторная явка"
                 android:textColor="@color/black"
-                android:textSize="18sp"
+                android:textSize="17sp"
                 android:textStyle="bold" />
         </LinearLayout>
         <LinearLayout
@@ -88,7 +88,7 @@
                 android:layout_marginStart="8dp"
                 android:text="Врач"
                 android:textColor="@color/black"
-                android:textSize="18sp"
+                android:textSize="17sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent" />
         </LinearLayout>
@@ -115,7 +115,7 @@
                 android:layout_marginStart="8dp"
                 android:text="Диагзноз"
                 android:textColor="@color/black"
-                android:textSize="18sp"
+                android:textSize="17sp"
                 android:textStyle="bold" />
         </LinearLayout>
     </LinearLayout>

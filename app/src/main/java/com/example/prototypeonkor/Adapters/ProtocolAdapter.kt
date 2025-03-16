@@ -58,12 +58,10 @@ class ProtocolAdapter(private val protocols: List<ProtocolFile>, private val con
         CoroutineScope(Dispatchers.IO).launch {
             try
             {
-
                 val response: ResponseBody = RetrofitInstance.apiService.openProtocols(protocolRequest)
                 val file = File(context.getExternalFilesDir(null), fileName)
                 file.outputStream().use { fileOutputStream -> response.byteStream().use { inputStream -> inputStream.copyTo(fileOutputStream) } }
                 openfFile(file)
-
             }
             catch (e: Exception)
             {

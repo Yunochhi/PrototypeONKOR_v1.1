@@ -12,7 +12,7 @@
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="95dp"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="10dp"
         android:background="@xml/fragmentinfo"
         android:orientation="horizontal"
         android:layout_marginHorizontal="15dp"

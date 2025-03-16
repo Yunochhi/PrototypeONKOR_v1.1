@@ -13,13 +13,13 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
         android:textColor="@color/black"
-        android:textSize="20sp"
+        android:textSize="18sp"
         android:textStyle="bold" />
     <TextView
         android:id="@+id/DescTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/black"
-        android:textSize="20sp"
+        android:textSize="17sp"
         android:textStyle="bold" />
 </LinearLayout>

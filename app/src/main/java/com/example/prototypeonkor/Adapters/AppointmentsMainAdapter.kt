@@ -27,7 +27,7 @@ class AppointmentsMainAdapter(private val appointments: List<Appointment>) : Rec
         val appoinment = appointments[position]
         with(holder)
         {
-            investigationName.text = "Исследование:${appoinment.investigationName}"
+            investigationName.text = "Исследование: ${appoinment.investigationName}"
             date.text = "Дата: ${appoinment.date}"
         }
     }

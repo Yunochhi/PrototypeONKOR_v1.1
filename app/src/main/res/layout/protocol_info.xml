@@ -13,7 +13,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="210dp"
+        android:layout_height="200dp"
         android:background="@xml/fragmentinfo"
         android:gravity="center_vertical"
         android:orientation="vertical"
@@ -32,7 +32,7 @@
                 android:layout_height="wrap_content"
                 android:text="Файл"
                 android:textColor="@color/black"
-                android:textSize="17sp"
+                android:textSize="19sp"
                 android:textStyle="bold"
                 android:clickable="true"
                 android:focusable="true"
@@ -60,7 +60,7 @@
                 android:layout_marginStart="8dp"
                 android:text="Дата"
                 android:textColor="@color/black"
-                android:textSize="18sp"
+                android:textSize="17sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent" />
         </LinearLayout>
@@ -88,7 +88,7 @@
                 android:layout_marginStart="8dp"
                 android:text="Время"
                 android:textColor="@color/black"
-                android:textSize="18sp"
+                android:textSize="17sp"
                 android:textStyle="bold" />
         </LinearLayout>
 
@@ -113,7 +113,7 @@
                 android:layout_marginStart="8dp"
                 android:text="Название"
                 android:textColor="@color/black"
-                android:textSize="18sp"
+                android:textSize="17sp"
                 android:textStyle="bold" />
         </LinearLayout>
         <LinearLayout
@@ -136,7 +136,7 @@
                 android:layout_marginStart="8dp"
                 android:text="Исследование"
                 android:textColor="@color/black"
-                android:textSize="18sp"
+                android:textSize="17sp"
                 android:textStyle="bold" />
         </LinearLayout>
     </LinearLayout>
