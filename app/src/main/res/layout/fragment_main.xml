@@ -36,30 +36,19 @@
             android:orientation="vertical">
 
             <TextView
-                android:layout_width="170dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Диспансерное наблюдение"
                 android:textColor="@color/black"
                 android:textSize="23sp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/mainDispensaryRec"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_marginTop="18dp"
-                android:text="ЛПУ:"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="Следующая явка:"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:overScrollMode="never" />
         </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatImageButton

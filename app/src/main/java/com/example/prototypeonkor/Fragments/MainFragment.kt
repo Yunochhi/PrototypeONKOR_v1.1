@@ -13,6 +13,7 @@ import com.example.prototypeonkor.Class.RetrofitInstance
 import com.example.prototypeonkor.R
 import com.example.prototypeonkor.APIService.SnilsRequest
 import com.example.prototypeonkor.Adapters.AppointmentsMainAdapter
+import com.example.prototypeonkor.Adapters.DispensaryObservationMainAdapter
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -22,12 +23,14 @@ class MainFragment : Fragment(R.layout.fragment_main) {
 
     private lateinit var mainProtocolsRec: RecyclerView
     private lateinit var mainVisitsRec: RecyclerView
+    private lateinit var mainDispensaryRec: RecyclerView
     override fun onViewCreated(view: View, savedInstanceState: Bundle?)
     {
         super.onViewCreated(view, savedInstanceState)
 
         mainProtocolsRec = view.findViewById(R.id.mainProtocolsRec)
         mainVisitsRec = view.findViewById(R.id.mainVisitsRec)
+        mainDispensaryRec = view.findViewById(R.id.mainDispensaryRec)
 
         view.findViewById<AppCompatImageButton>(R.id.buttonAllProtocols).setOnClickListener { replaceFragment(ProtocolsFragment()) }
         view.findViewById<AppCompatImageButton>(R.id.buttonAllVisits).setOnClickListener { replaceFragment(VisitsFragment()) }
@@ -35,10 +38,39 @@ class MainFragment : Fragment(R.layout.fragment_main) {
 
         mainProtocolsRec.layoutManager = LinearLayoutManager(requireContext())
         mainVisitsRec.layoutManager = LinearLayoutManager(requireContext())
+        mainDispensaryRec.layoutManager = LinearLayoutManager(requireContext())
+
 
         viewLifecycleOwner.lifecycleScope.launch {
             fetchProtocols()
             fetchAppointments()
+            fetchDispensary()
+        }
+    }
+
+    private suspend fun fetchDispensary() {
+        try
+        {
+            val snilsRequest = SnilsRequest("549 711 581 21")
+            val dispensary = withContext(Dispatchers.IO)
+            {
+                RetrofitInstance.apiService.getObservations(snilsRequest)
+            }
+
+            if (dispensary.isNotEmpty())
+            {
+                withContext(Dispatchers.Main)
+                {
+                    mainDispensaryRec.adapter = DispensaryObservationMainAdapter(dispensary)
+                }
+            }
+        }
+        catch (e: Exception)
+        {
+            withContext(Dispatchers.Main)
+            {
+                Toast.makeText(requireContext(), e.message, Toast.LENGTH_SHORT).show()
+            }
         }
     }
 

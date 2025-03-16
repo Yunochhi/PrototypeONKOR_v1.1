@@ -5,7 +5,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.prototypeonkor.APIService.ProtocolFile
 import com.example.prototypeonkor.Class.Appointment
 import com.example.prototypeonkor.R
 
@@ -28,8 +27,8 @@ class AppointmentsMainAdapter(private val appointments: List<Appointment>) : Rec
         val appoinment = appointments[position]
         with(holder)
         {
-            investigationName.text = appoinment.investigationName
-            date.text = appoinment.date
+            investigationName.text = "Исследование:${appoinment.investigationName}"
+            date.text = "Дата: ${appoinment.date}"
         }
     }
 

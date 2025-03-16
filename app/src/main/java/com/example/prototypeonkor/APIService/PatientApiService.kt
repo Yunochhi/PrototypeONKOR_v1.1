@@ -1,6 +1,7 @@
 package com.example.prototypeonkor.APIService
 
 import com.example.prototypeonkor.Class.Appointment
+import com.example.prototypeonkor.Class.DispensaryObservation
 import com.example.prototypeonkor.Class.Notification
 import okhttp3.ResponseBody
 import retrofit2.http.Body
@@ -45,6 +46,9 @@ interface PatientApiService {
 
     @POST("appointments")
     suspend fun getAppointments(@Body snilsRequest: SnilsRequest): List<Appointment>
+
+    @POST("getObservations")
+    suspend fun getObservations(@Body snilsRequest: SnilsRequest): List<DispensaryObservation>
 
     @POST("protocol")
     suspend fun openProtocols(@Body protocolRequest: ProtocolRequest): ResponseBody

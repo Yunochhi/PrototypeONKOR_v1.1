@@ -27,8 +27,8 @@ class ProtocolsMainAdapter(private val protocols: List<ProtocolFile>) : Recycler
         val protocol = protocols[position]
         with(holder)
         {
-            investigationName.text = protocol.info.lpu
-            date.text = protocol.info.date
+            investigationName.text = "ЛПУ: ${protocol.info.lpu}"
+            date.text = "Дата: ${protocol.info.date}"
         }
     }
 
