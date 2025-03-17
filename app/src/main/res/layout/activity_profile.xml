@@ -113,8 +113,10 @@
         android:layout_marginTop="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2"
+        app:layout_constraintVertical_bias="0.0">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -136,8 +138,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="15dp"
-                android:layout_marginTop="20dp"
-                android:background="@xml/profileinfo"
+                android:layout_marginTop="0dp"
                 android:orientation="vertical"
                 android:padding="16dp">
 
@@ -145,6 +146,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
+                    android:background="@xml/border"
                     android:padding="8dp">
 
                     <TextView
@@ -170,6 +172,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
+                    android:background="@xml/border"
                     android:padding="8dp">
 
                     <TextView
@@ -195,6 +198,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
+                    android:background="@xml/border"
                     android:padding="8dp">
 
                     <TextView
@@ -220,6 +224,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
+                    android:background="@xml/border"
                     android:padding="8dp">
 
                     <TextView
@@ -245,6 +250,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
+                    android:background="@xml/border"
                     android:padding="8dp">
 
                     <TextView
@@ -270,6 +276,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
+                    android:background="@xml/border"
                     android:padding="8dp">
 
                     <TextView
@@ -295,6 +302,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
+                    android:background="@xml/border"
                     android:padding="8dp">
 
                     <TextView
@@ -320,6 +328,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
+                    android:background="@xml/border"
                     android:padding="8dp">
 
                     <TextView
@@ -347,7 +356,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="30dp"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="0dp"
                 android:text="Медицинские документы"
                 android:textColor="@color/black"
                 android:textSize="30sp"
@@ -357,8 +366,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="15dp"
-                android:layout_marginTop="20dp"
-                android:background="@xml/profileinfo"
+                android:layout_marginTop="0dp"
                 android:orientation="vertical"
                 android:padding="16dp">
 
@@ -366,12 +374,23 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
+                    android:background="@xml/border"
                     android:padding="8dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="📑 Страховой полис: 1234 5678 9012"
+                        android:text="📑 Страховой полис: "
+                        android:textColor="@color/black"
+                        android:textSize="19sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/insurancepolicy"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="188dp"
+                        android:text="1234 5678 9012"
                         android:textColor="@color/black"
                         android:textSize="19sp"
                         android:textStyle="bold" />
@@ -381,12 +400,23 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
+                    android:background="@xml/border"
                     android:padding="8dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="📕 Номер медкарты: 123-456-789"
+                        android:text="📕 Номер медкарты:"
+                        android:textColor="@color/black"
+                        android:textSize="19sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/medcard"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="194dp"
+                        android:text="123-456-789"
                         android:textColor="@color/black"
                         android:textSize="19sp"
                         android:textStyle="bold" />
@@ -396,12 +426,23 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
+                    android:background="@xml/border"
                     android:padding="8dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="💳 CНИЛС: 549 711 581 21"
+                        android:text="💳 CНИЛС:"
+                        android:textColor="@color/black"
+                        android:textSize="19sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/snils"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="102dp"
+                        android:text="549 711 581 21"
                         android:textColor="@color/black"
                         android:textSize="19sp"
                         android:textStyle="bold" />
