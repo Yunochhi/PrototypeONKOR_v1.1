@@ -47,7 +47,7 @@ interface PatientApiService {
     @POST("appointments")
     suspend fun getAppointments(@Body snilsRequest: SnilsRequest): List<Appointment>
 
-    @POST("getObservations")
+    @POST("observations")
     suspend fun getObservations(@Body snilsRequest: SnilsRequest): List<DispensaryObservation>
 
     @POST("protocol")
