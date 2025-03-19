@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity() {
         }
         replaceFragment(MainFragment())
     }
-
+    //nado fix
     private suspend fun pullNotifRec()
     {
         val snils = SnilsRequest("549 711 581 21")

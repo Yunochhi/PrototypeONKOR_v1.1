@@ -3,6 +3,7 @@ package com.example.prototypeonkor.APIService
 import com.example.prototypeonkor.Class.Appointment
 import com.example.prototypeonkor.Class.DispensaryObservation
 import com.example.prototypeonkor.Class.Notification
+import com.example.prototypeonkor.Class.ProtocolInfo
 import okhttp3.ResponseBody
 import retrofit2.http.Body
 import retrofit2.http.POST
@@ -10,14 +11,6 @@ import retrofit2.http.POST
 data class ProtocolFile(
     val fileName: String,
     val info: ProtocolInfo
-)
-
-data class ProtocolInfo(
-    val investigationName: String,
-    val doctorName: String,
-    val date: String,
-    val time: String,
-    val lpu: String
 )
 
 data class SnilsRequest(
@@ -35,21 +28,27 @@ data class NotificationRequest(
 )
 
 interface PatientApiService {
+    //protocols
     @POST("listProtocols")
     suspend fun getProtocols(@Body snilsRequest: SnilsRequest): List<ProtocolFile>
 
+    @POST("protocol")
+    suspend fun openProtocols(@Body protocolRequest: ProtocolRequest): ResponseBody
+
+    //notification
     @POST("addNotification")
-    suspend fun addNotification(@Body notificationRequest: NotificationRequest)
+    suspend fun addNotification(@Body notificationRequest: NotificationRequest): ResponseBody
 
     @POST("notifications")
     suspend fun getNotifications(@Body snilsRequest: SnilsRequest): MutableList<Notification>
 
+    //appointments
     @POST("appointments")
     suspend fun getAppointments(@Body snilsRequest: SnilsRequest): List<Appointment>
 
-    @POST("getObservations")
+    //observations
+    @POST("observations")
     suspend fun getObservations(@Body snilsRequest: SnilsRequest): List<DispensaryObservation>
 
-    @POST("protocol")
-    suspend fun openProtocols(@Body protocolRequest: ProtocolRequest): ResponseBody
+
 }
