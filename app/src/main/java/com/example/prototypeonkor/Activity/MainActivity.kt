@@ -57,35 +57,35 @@ class MainActivity : AppCompatActivity() {
         }
         replaceFragment(MainFragment())
     }
-    //nado fix
+
     private suspend fun pullNotifRec()
     {
-        val snils = SnilsRequest("549 711 581 21")
-        val protocols = withContext(Dispatchers.IO) { RetrofitInstance.apiService.getProtocols(snils) }
-        val existingNotifs = withContext(Dispatchers.IO) { RetrofitInstance.apiService.getNotifications(snils) }
+        val snilsRequest = SnilsRequest("549 711 581 21")
+        val appointments = withContext(Dispatchers.IO) { RetrofitInstance.apiService.getAppointments(snilsRequest) }
+        val existingNotifs = withContext(Dispatchers.IO) { RetrofitInstance.apiService.getNotifications(snilsRequest) }
 
-        protocols.filter { ChronoUnit.DAYS.between(LocalDate.now(), LocalDate.parse(it.info.date)) in 1..2 }
+        appointments.filter { ChronoUnit.DAYS.between(LocalDate.now(), LocalDate.parse(it.date)) in 1..2 }
             .forEach { protocol ->
-                val content = "Лечащий врач: ${protocol.info.doctorName}\nДата: ${protocol.info.date}\nВремя: ${protocol.info.time}"
-                if (existingNotifs.none { it.description == content }) {
+                val description = "Лечащий врач: ${protocol.doctorName}\nДата: ${protocol.date}\nВремя: ${protocol.time}"
+                if (existingNotifs.none { it.description == description }) {
                     withContext(Dispatchers.IO) {
-                        RetrofitInstance.apiService.addNotification(NotificationRequest(snils.snils, Notification("Напоминание о визите!", content)))
+                        RetrofitInstance.apiService.addNotification(Notification(snilsRequest.snils, "Напоминание о визите!", description))
                     }
                 }
-                sendNotification(content)
+                sendNotification(description)
             }
     }
 
     private fun sendNotification(content: String)
     {
         val notification = NotificationCompat.Builder(this, CHANNEL_ID)
+            .setContentTitle("Напоминание о визите")
             .setContentText(content)
             .setSmallIcon(R.drawable.onkor)
             .build()
 
         getSystemService(NotificationManager::class.java)?.notify(System.currentTimeMillis().toInt(), notification)
     }
-
 
     private fun createNotificationChannel()
     {

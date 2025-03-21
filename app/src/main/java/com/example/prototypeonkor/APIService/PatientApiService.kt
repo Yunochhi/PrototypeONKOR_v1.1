@@ -37,7 +37,7 @@ interface PatientApiService {
 
     //notification
     @POST("addNotification")
-    suspend fun addNotification(@Body notificationRequest: NotificationRequest): ResponseBody
+    suspend fun addNotification(@Body notificationRequest: Notification): ResponseBody
 
     @POST("notifications")
     suspend fun getNotifications(@Body snilsRequest: SnilsRequest): MutableList<Notification>
