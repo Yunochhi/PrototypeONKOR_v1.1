@@ -40,7 +40,7 @@ class LoadingActivity : AppCompatActivity() {
 
     private fun navigateToAuthorization()
     {
-        startActivity(Intent(this, MainActivity::class.java))
+        startActivity(Intent(this, AuthorizationActivity::class.java))
         finish()
     }
 }

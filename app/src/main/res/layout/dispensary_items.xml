@@ -29,7 +29,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="ЛПУ:"
-                android:textColor="@color/black"
+                android:textColor="@color/grey"
                 android:textSize="18sp"
                 android:textStyle="bold" />
             <TextView
@@ -38,7 +38,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:text="ЛПУ"
-                android:textColor="@color/black"
+                android:textColor="@color/grey"
                 android:textSize="17sp"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -53,7 +53,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Повторная явка:"
-                android:textColor="@color/black"
+                android:textColor="@color/grey"
                 android:textSize="18sp"
                 android:textStyle="bold" />
             <TextView
@@ -62,7 +62,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:text="Повторная явка"
-                android:textColor="@color/black"
+                android:textColor="@color/grey"
                 android:textSize="17sp"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -77,7 +77,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Врач:"
-                android:textColor="@color/black"
+                android:textColor="@color/grey"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -87,7 +87,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:text="Врач"
-                android:textColor="@color/black"
+                android:textColor="@color/grey"
                 android:textSize="17sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent" />
@@ -104,7 +104,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Диагзноз:"
-                android:textColor="@color/black"
+                android:textColor="@color/grey"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -114,7 +114,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:text="Диагзноз"
-                android:textColor="@color/black"
+                android:textColor="@color/grey"
                 android:textSize="17sp"
                 android:textStyle="bold" />
         </LinearLayout>
