@@ -42,8 +42,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         mainVisitsRec.layoutManager = LinearLayoutManager(requireContext())
         mainDispensaryRec.layoutManager = LinearLayoutManager(requireContext())
 
-
-        snils = arguments?.getString("SNILS") ?: ""
+        snils = arguments?.getString("SNILS").toString()
 
         viewLifecycleOwner.lifecycleScope.launch {
             fetchProtocols()

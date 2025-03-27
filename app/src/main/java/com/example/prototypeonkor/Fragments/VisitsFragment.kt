@@ -27,7 +27,7 @@ class VisitsFragment : Fragment(R.layout.fragment_visits) {
         recyclerView = view.findViewById(R.id.AppointmentRecyclerView)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        snils = arguments?.getString("SNILS") ?: ""
+        snils = arguments?.getString("SNILS").toString()
 
         viewLifecycleOwner.lifecycleScope.launch {
             fetchProtocols()

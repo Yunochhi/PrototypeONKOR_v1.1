@@ -12,6 +12,7 @@ import com.example.prototypeonkor.APIService.SnilsRequest
 import com.example.prototypeonkor.Adapters.DispensaryAdapter
 import com.example.prototypeonkor.Class.RetrofitInstance
 import com.example.prototypeonkor.R
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -29,7 +30,7 @@ class DispancerFragment : Fragment(R.layout.fragment_dispancer) {
         recyclerView = view.findViewById(R.id.DispancerRecyclerView)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        snils = arguments?.getString("SNILS") ?: ""
+        snils = arguments?.getString("SNILS").toString()
 
         viewLifecycleOwner.lifecycleScope.launch {
             fetchDispensaries()

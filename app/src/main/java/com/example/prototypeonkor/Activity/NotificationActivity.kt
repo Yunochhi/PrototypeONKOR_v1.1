@@ -10,6 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.prototypeonkor.APIService.SnilsRequest
 import com.example.prototypeonkor.Adapters.NotificationsAdapter
+import com.example.prototypeonkor.Class.PrefsHelper
 import com.example.prototypeonkor.Class.RetrofitInstance
 import com.example.prototypeonkor.databinding.ActivityNotificationBinding
 import kotlinx.coroutines.Dispatchers
@@ -19,25 +20,28 @@ import kotlinx.coroutines.withContext
 class NotificationActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityNotificationBinding
+    private lateinit var prefs: PrefsHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityNotificationBinding.inflate(layoutInflater)
         enableEdgeToEdge()
         setContentView(binding.root)
-
-        binding.backBtn.setOnClickListener {
-            startActivity(Intent(this, MainActivity::class.java))
-        }
-
         ViewCompat.setOnApplyWindowInsetsListener(binding.main) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 
-        val snils = intent.getStringExtra("SNILS") ?: ""
+        prefs = PrefsHelper(this)
 
+        binding.backBtn.setOnClickListener {
+            startActivity(Intent(this, MainActivity::class.java))
+        }
+
+
+
+        val snils = prefs.getSnilsString()
 
         lifecycleScope.launch {
             pullNotifRec(snils)

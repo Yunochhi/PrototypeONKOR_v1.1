@@ -34,12 +34,11 @@ class ProtocolsFragment : Fragment(R.layout.fragment_protocols) {
         recyclerView = view.findViewById(R.id.protocolsRecyclerView)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        snils = arguments?.getString("SNILS") ?: ""
+        snils = arguments?.getString("SNILS").toString()
 
         viewLifecycleOwner.lifecycleScope.launch {
             fetchProtocols()
         }
-
     }
 
     private suspend fun fetchProtocols() {
