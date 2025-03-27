@@ -24,6 +24,8 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     private lateinit var mainProtocolsRec: RecyclerView
     private lateinit var mainVisitsRec: RecyclerView
     private lateinit var mainDispensaryRec: RecyclerView
+    private var snils: String = ""
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?)
     {
         super.onViewCreated(view, savedInstanceState)
@@ -41,6 +43,8 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         mainDispensaryRec.layoutManager = LinearLayoutManager(requireContext())
 
 
+        snils = arguments?.getString("SNILS") ?: ""
+
         viewLifecycleOwner.lifecycleScope.launch {
             fetchProtocols()
             fetchAppointments()
@@ -51,7 +55,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     private suspend fun fetchDispensary() {
         try
         {
-            val snilsRequest = SnilsRequest("549 711 581 21")
+            val snilsRequest = SnilsRequest(snils)
             val dispensary = withContext(Dispatchers.IO)
             {
                 RetrofitInstance.apiService.getObservations(snilsRequest)
@@ -77,7 +81,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     private suspend fun fetchProtocols() {
         try
         {
-            val snilsRequest = SnilsRequest("549 711 581 21")
+            val snilsRequest = SnilsRequest(snils)
             val protocols = withContext(Dispatchers.IO)
             {
                 RetrofitInstance.apiService.getProtocols(snilsRequest)
@@ -103,7 +107,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     private suspend fun fetchAppointments() {
         try
         {
-            val snilsRequest = SnilsRequest("549 711 581 21")
+            val snilsRequest = SnilsRequest(snils)
             val appointments = withContext(Dispatchers.IO)
             {
                 RetrofitInstance.apiService.getAppointments(snilsRequest)

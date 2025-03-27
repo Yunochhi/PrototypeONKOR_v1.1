@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.prototypeonkor.APIService.SnilsRequest
 import com.example.prototypeonkor.Adapters.AppointmentAdapter
-import com.example.prototypeonkor.Adapters.ProtocolAdapter
 import com.example.prototypeonkor.Class.RetrofitInstance
 import com.example.prototypeonkor.R
 import kotlinx.coroutines.Dispatchers
@@ -20,12 +19,15 @@ import kotlinx.coroutines.withContext
 class VisitsFragment : Fragment(R.layout.fragment_visits) {
     private lateinit var recyclerView: RecyclerView
     private lateinit var appointmentAdapter: AppointmentAdapter
+    private var snils: String = ""
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         recyclerView = view.findViewById(R.id.AppointmentRecyclerView)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
+
+        snils = arguments?.getString("SNILS") ?: ""
 
         viewLifecycleOwner.lifecycleScope.launch {
             fetchProtocols()
@@ -34,7 +36,7 @@ class VisitsFragment : Fragment(R.layout.fragment_visits) {
 
     private suspend fun fetchProtocols() {
         try {
-            val snilsRequest = SnilsRequest("549 711 581 21")
+            val snilsRequest = SnilsRequest(snils)
             val appointments = withContext(Dispatchers.IO)
             {
                 RetrofitInstance.apiService.getAppointments(snilsRequest)

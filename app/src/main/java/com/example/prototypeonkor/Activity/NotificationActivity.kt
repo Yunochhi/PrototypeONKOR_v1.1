@@ -36,15 +36,17 @@ class NotificationActivity : AppCompatActivity() {
             insets
         }
 
+        val snils = intent.getStringExtra("SNILS") ?: ""
+
+
         lifecycleScope.launch {
-            pullNotifRec()
+            pullNotifRec(snils)
         }
     }
 
-    //Вывод уведомлений
-    private suspend fun pullNotifRec()
+    private suspend fun pullNotifRec(snils: String)
     {
-        val snilsRequest = SnilsRequest("549 711 581 21")
+        val snilsRequest = SnilsRequest(snils)
         val notifList = withContext(Dispatchers.IO) {
             RetrofitInstance.apiService.getNotifications(snilsRequest)
         }

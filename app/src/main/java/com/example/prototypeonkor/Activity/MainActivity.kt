@@ -23,6 +23,7 @@ import kotlinx.coroutines.withContext
 import java.time.LocalDate
 import java.time.temporal.ChronoUnit
 
+@Suppress("DEPRECATION")
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
@@ -39,62 +40,78 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, 0)
             insets
         }
+
+        val snils = intent.getStringExtra("SNILS") ?: ""
+
         lifecycleScope.launch {
-            pullNotifRec()
+            pullNotifRec(snils)
         }
 
         binding.actionBtn.setOnClickListener { startActivity(Intent(this, ProfileActivity::class.java)) }
-        binding.notificationsBtn.setOnClickListener { startActivity(Intent(this, NotificationActivity::class.java)) }
+        binding.notificationsBtn.setOnClickListener {
+            val intent = Intent(this, NotificationActivity::class.java)
+            intent.putExtra("SNILS", snils)
+            startActivity(intent)
+        }
 
         binding.bottomNavigationBar.setOnNavigationItemSelectedListener {
             when (it.itemId) {
-                R.id.navigation_protocols -> replaceFragment(ProtocolsFragment())
-                R.id.navigation_visits -> replaceFragment(VisitsFragment())
-                R.id.navigation_home -> replaceFragment(MainFragment())
-                R.id.navigation_dispensaryobservation -> replaceFragment(DispancerFragment())
+                R.id.navigation_protocols -> replaceFragment(ProtocolsFragment(), snils)
+                R.id.navigation_visits -> replaceFragment(VisitsFragment(), snils)
+                R.id.navigation_home -> replaceFragment(MainFragment(), snils)
+                R.id.navigation_dispensaryobservation -> replaceFragment(DispancerFragment(), snils)
             }
             true
         }
-        replaceFragment(MainFragment())
+        replaceFragment(MainFragment(), snils)
     }
 
-    private suspend fun pullNotifRec()
+    private suspend fun pullNotifRec(snils: String)
     {
-        val snilsRequest = SnilsRequest("549 711 581 21")
-        val appointments = withContext(Dispatchers.IO) { RetrofitInstance.apiService.getAppointments(snilsRequest) }
-        val existingNotifs = withContext(Dispatchers.IO) { RetrofitInstance.apiService.getNotifications(snilsRequest) }
-
-        appointments.filter { ChronoUnit.DAYS.between(LocalDate.now(), LocalDate.parse(it.date)) in 1..2 }
-            .forEach { protocol ->
-                val description = "Лечащий врач: ${protocol.doctorName}\nДата: ${protocol.date}\nВремя: ${protocol.time}"
-                if (existingNotifs.none { it.description == description }) {
-                    withContext(Dispatchers.IO) {
-                        RetrofitInstance.apiService.addNotification(Notification(snilsRequest.snils, "Напоминание о визите!", description))
-                    }
-                }
-                sendNotification(description)
+        try
+        {
+            val snilsRequest = SnilsRequest(snils)
+            val appointments = withContext(Dispatchers.IO) {
+                RetrofitInstance.apiService.getAppointments(snilsRequest)
             }
+            val existingNotifs = withContext(Dispatchers.IO) {
+                RetrofitInstance.apiService.getNotifications(snilsRequest)
+            }
+
+            appointments.filter { ChronoUnit.DAYS.between(LocalDate.now(), LocalDate.parse(it.date)) in 1..2 } .forEach { protocol -> val description = "Лечащий врач: ${protocol.doctorName}\nДата: ${protocol.date}\nВремя: ${protocol.time}"
+                    if (existingNotifs.none { it.description == description })
+                    {
+                        withContext(Dispatchers.IO)
+                        {
+                            RetrofitInstance.apiService.addNotification(Notification(snilsRequest.snils, "Напоминание о визите!", description))
+                        }
+                    }
+                    sendNotification(description)
+                }
+        }
+        catch(e:Exception)
+        {
+           //Тут тип что-то должно быть, но не будет)
+        }
     }
 
     private fun sendNotification(content: String)
     {
-        val notification = NotificationCompat.Builder(this, CHANNEL_ID)
-            .setContentTitle("Напоминание о визите")
-            .setContentText(content)
-            .setSmallIcon(R.drawable.onkor)
-            .build()
-
+        val notification = NotificationCompat.Builder(this, CHANNEL_ID).setContentTitle("Напоминание о визите").setContentText(content).setSmallIcon(R.drawable.onkor).build()
         getSystemService(NotificationManager::class.java)?.notify(System.currentTimeMillis().toInt(), notification)
     }
 
     private fun createNotificationChannel()
     {
-        getSystemService(NotificationManager::class.java)
-            ?.createNotificationChannel(NotificationChannel(CHANNEL_ID, CHANNEL_ID, NotificationManager.IMPORTANCE_DEFAULT))
+        getSystemService(NotificationManager::class.java)?.createNotificationChannel(NotificationChannel(CHANNEL_ID, CHANNEL_ID, NotificationManager.IMPORTANCE_DEFAULT))
     }
 
-    private fun replaceFragment(fragment: Fragment)
-    {
+    private fun replaceFragment(fragment: Fragment, snils: String) {
+
+        val bundle = Bundle()
+        bundle.putString("SNILS", snils)
+        fragment.arguments = bundle
+
         supportFragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit()
     }
 }

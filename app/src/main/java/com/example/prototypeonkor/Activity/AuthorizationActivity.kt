@@ -2,12 +2,13 @@ package com.example.prototypeonkor.Activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.example.prototypeonkor.databinding.ActivityAuthorizationBinding
+
+//549 711 581 21 - 1 юзер
+
 
 class AuthorizationActivity : AppCompatActivity() {
 
@@ -20,9 +21,19 @@ class AuthorizationActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
-
         binding.buttonFind.setOnClickListener {
-            startActivity(Intent(this, MainActivity::class.java))
+            val snils = binding.editTextSNILS.text.toString()
+            if (snils.isNotEmpty())
+            {
+                val intent = Intent(this, MainActivity::class.java)
+                intent.putExtra("SNILS", snils)
+                startActivity(intent)
+            }
+            else
+            {
+                Toast.makeText(this, "Введите корректный СНИЛС", Toast.LENGTH_SHORT).show()
+            }
         }
     }
+
 }
