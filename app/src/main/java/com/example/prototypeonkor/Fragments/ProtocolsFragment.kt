@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
@@ -62,7 +61,6 @@ class ProtocolsFragment : Fragment(R.layout.fragment_protocols) {
         {
             withContext(Dispatchers.Main)
             {
-                Toast.makeText(requireContext(), "${e.message}", Toast.LENGTH_SHORT).show()
                 Log.e("ProtocolsFragment", "${e.message}")
             }
         }
@@ -84,7 +82,7 @@ class ProtocolsFragment : Fragment(R.layout.fragment_protocols) {
             {
                 withContext(Dispatchers.Main)
                 {
-                    Toast.makeText(requireContext(), "Ошибка открытия файла", Toast.LENGTH_SHORT).show()
+                    Log.e("ProtocolsFragment", "${e.message}")
                 }
             }
         }

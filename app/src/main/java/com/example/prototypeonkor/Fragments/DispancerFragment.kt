@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
-import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -12,7 +11,6 @@ import com.example.prototypeonkor.APIService.SnilsRequest
 import com.example.prototypeonkor.Adapters.DispensaryAdapter
 import com.example.prototypeonkor.Class.RetrofitInstance
 import com.example.prototypeonkor.R
-import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -57,8 +55,7 @@ class DispancerFragment : Fragment(R.layout.fragment_dispancer) {
         {
             withContext(Dispatchers.Main)
             {
-                Toast.makeText(requireContext(), "${e.message}", Toast.LENGTH_SHORT).show()
-                Log.e("ProtocolsFragment", "${e.message}")
+                Log.e("DispensariesFragment", "${e.message}")
             }
         }
     }

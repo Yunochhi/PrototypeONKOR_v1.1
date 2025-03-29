@@ -1,8 +1,8 @@
 package com.example.prototypeonkor.Fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
@@ -72,7 +72,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         {
             withContext(Dispatchers.Main)
             {
-                Toast.makeText(requireContext(), e.message, Toast.LENGTH_SHORT).show()
+                Log.e("Dispensary", "${e.message}")
             }
         }
     }
@@ -98,7 +98,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         {
             withContext(Dispatchers.Main)
             {
-                Toast.makeText(requireContext(), e.message, Toast.LENGTH_SHORT).show()
+                Log.e("Protocols", "${e.message}")
             }
         }
     }
@@ -124,7 +124,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         {
             withContext(Dispatchers.Main)
             {
-                Toast.makeText(requireContext(), e.message, Toast.LENGTH_SHORT).show()
+                Log.e("Appointments", "${e.message}")
             }
         }
     }

@@ -3,7 +3,6 @@ package com.example.prototypeonkor.Fragments
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -55,8 +54,7 @@ class VisitsFragment : Fragment(R.layout.fragment_visits) {
         {
             withContext(Dispatchers.Main)
             {
-                Toast.makeText(requireContext(), "${e.message}", Toast.LENGTH_SHORT).show()
-                Log.e("ProtocolsFragment", "${e.message}")
+                Log.e("VisitsFragmnet", "${e.message}")
             }
         }
     }

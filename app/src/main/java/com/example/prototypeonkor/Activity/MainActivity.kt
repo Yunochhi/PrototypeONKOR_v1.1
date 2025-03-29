@@ -5,7 +5,6 @@ import android.app.NotificationManager
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
@@ -20,7 +19,6 @@ import com.example.prototypeonkor.Class.RetrofitInstance
 import com.example.prototypeonkor.Fragments.*
 import com.example.prototypeonkor.R
 import com.example.prototypeonkor.databinding.ActivityMainBinding
-import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -99,7 +97,6 @@ class MainActivity : AppCompatActivity() {
         }
         catch(e:Exception)
         {
-            Snackbar.make(binding.root, "${e.message}", Snackbar.LENGTH_SHORT).show()
             Log.e("MainActivity", "${e.message}")
         }
     }
