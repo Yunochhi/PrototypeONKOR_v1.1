@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -8,6 +9,7 @@
     android:layout_height="match_parent"
     android:background="@xml/mainfone"
     tools:context=".Activity.ProfileActivity">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
@@ -108,7 +110,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.core.widget.NestedScrollView
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -118,7 +120,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <TextView
@@ -136,20 +138,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="15dp"
-                android:layout_marginTop="20dp"
-                android:background="@xml/profileinfo"
+                android:layout_marginTop="0dp"
+
                 android:orientation="vertical"
-                android:padding="15dp">
+                android:padding="16dp">
 
                 <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:background="@xml/border"
+                    android:padding="8dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="🎂 Дата рождения:"
-                        android:textColor="@color/black"
+                        android:textColor="@color/grey"
                         android:textSize="19sp"
                         android:textStyle="bold" />
 
@@ -159,7 +164,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="177dp"
                         android:text="01.01.1990"
-                        android:textColor="@color/black"
+                        android:textColor="@color/grey"
                         android:textSize="19sp"
                         android:textStyle="bold" />
                 </FrameLayout>
@@ -167,13 +172,15 @@
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="14dp">
+                    android:layout_marginBottom="8dp"
+                    android:background="@xml/border"
+                    android:padding="8dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="🚻 Пол:"
-                        android:textColor="@color/black"
+                        android:textColor="@color/grey"
                         android:textSize="19sp"
                         android:textStyle="bold" />
 
@@ -183,7 +190,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="71dp"
                         android:text="Мужской"
-                        android:textColor="@color/black"
+                        android:textColor="@color/grey"
                         android:textSize="19sp"
                         android:textStyle="bold" />
                 </FrameLayout>
@@ -191,13 +198,15 @@
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="14dp">
+                    android:layout_marginBottom="8dp"
+                    android:background="@xml/border"
+                    android:padding="8dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="⚖️ Вес:"
-                        android:textColor="@color/black"
+                        android:textColor="@color/grey"
                         android:textSize="19sp"
                         android:textStyle="bold" />
 
@@ -207,7 +216,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="71dp"
                         android:text="65 кг"
-                        android:textColor="@color/black"
+                        android:textColor="@color/grey"
                         android:textSize="19sp"
                         android:textStyle="bold" />
                 </FrameLayout>
@@ -215,13 +224,15 @@
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="14dp">
+                    android:layout_marginBottom="8dp"
+                    android:background="@xml/border"
+                    android:padding="8dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="📏 Рост:"
-                        android:textColor="@color/black"
+                        android:textColor="@color/grey"
                         android:textSize="19sp"
                         android:textStyle="bold" />
 
@@ -231,7 +242,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="78dp"
                         android:text="181 см"
-                        android:textColor="@color/black"
+                        android:textColor="@color/grey"
                         android:textSize="19sp"
                         android:textStyle="bold" />
                 </FrameLayout>
@@ -239,13 +250,15 @@
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="14dp">
+                    android:layout_marginBottom="8dp"
+                    android:background="@xml/border"
+                    android:padding="8dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="♥ Группа крови:"
-                        android:textColor="@color/black"
+                        android:textColor="@color/grey"
                         android:textSize="19sp"
                         android:textStyle="bold" />
 
@@ -255,7 +268,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="158dp"
                         android:text="Первая"
-                        android:textColor="@color/black"
+                        android:textColor="@color/grey"
                         android:textSize="19sp"
                         android:textStyle="bold" />
                 </FrameLayout>
@@ -263,13 +276,15 @@
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="14dp">
+                    android:layout_marginBottom="8dp"
+                    android:background="@xml/border"
+                    android:padding="8dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="🏠 Город:"
-                        android:textColor="@color/black"
+                        android:textColor="@color/grey"
                         android:textSize="19sp"
                         android:textStyle="bold" />
 
@@ -279,7 +294,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="90dp"
                         android:text="Москва"
-                        android:textColor="@color/black"
+                        android:textColor="@color/grey"
                         android:textSize="19sp"
                         android:textStyle="bold" />
                 </FrameLayout>
@@ -287,13 +302,15 @@
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="14dp">
+                    android:layout_marginBottom="8dp"
+                    android:background="@xml/border"
+                    android:padding="8dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="📍 Адрес:"
-                        android:textColor="@color/black"
+                        android:textColor="@color/grey"
                         android:textSize="19sp"
                         android:textStyle="bold" />
 
@@ -303,7 +320,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="94dp"
                         android:text="ул. Ленина, 5"
-                        android:textColor="@color/black"
+                        android:textColor="@color/grey"
                         android:textSize="19sp"
                         android:textStyle="bold" />
                 </FrameLayout>
@@ -311,13 +328,15 @@
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="14dp">
+                    android:layout_marginBottom="8dp"
+                    android:background="@xml/border"
+                    android:padding="8dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="☎ Телефон:"
-                        android:textColor="@color/black"
+                        android:textColor="@color/grey"
                         android:textSize="19sp"
                         android:textStyle="bold" />
 
@@ -327,7 +346,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="118dp"
                         android:text="+7 900 000 00 00"
-                        android:textColor="@color/black"
+                        android:textColor="@color/grey"
                         android:textSize="19sp"
                         android:textStyle="bold" />
                 </FrameLayout>
@@ -338,9 +357,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="30dp"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="0dp"
                 android:text="Медицинские документы"
-                android:textColor="@color/black"
+                android:textColor="@color/grey"
                 android:textSize="30sp"
                 android:textStyle="bold" />
 
@@ -348,20 +367,33 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="15dp"
-                android:layout_marginTop="20dp"
-                android:background="@xml/profileinfo"
+                android:layout_marginTop="0dp"
+
                 android:orientation="vertical"
                 android:padding="16dp">
 
                 <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:background="@xml/border"
+                    android:padding="8dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="📑 Страховой полис: 1234 5678 9012"
-                        android:textColor="@color/black"
+                        android:text="📑 Страховой полис: "
+                        android:textColor="@color/grey"
+                        android:textSize="19sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/insurancepolicy"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="188dp"
+                        android:text="1234 5678 9012"
+                        android:textColor="@color/grey"
                         android:textSize="19sp"
                         android:textStyle="bold" />
                 </FrameLayout>
@@ -369,13 +401,25 @@
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="14dp">
+                    android:layout_marginBottom="8dp"
+                    android:background="@xml/border"
+                    android:padding="8dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="📕 Номер медкарты: 123-456-789"
-                        android:textColor="@color/black"
+                        android:text="📕 Номер медкарты:"
+                        android:textColor="@color/grey"
+                        android:textSize="19sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/medcard"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="194dp"
+                        android:text="123-456-789"
+                        android:textColor="@color/grey"
                         android:textSize="19sp"
                         android:textStyle="bold" />
                 </FrameLayout>
@@ -383,13 +427,25 @@
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="14dp">
+                    android:layout_marginBottom="8dp"
+                    android:background="@xml/border"
+                    android:padding="8dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="💳 CНИЛС: 549 711 581 21"
-                        android:textColor="@color/black"
+                        android:text="💳 CНИЛС:"
+                        android:textColor="@color/grey"
+                        android:textSize="19sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/snils"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="102dp"
+                        android:text="549 711 581 21"
+                        android:textColor="@color/grey"
                         android:textSize="19sp"
                         android:textStyle="bold" />
                 </FrameLayout>
