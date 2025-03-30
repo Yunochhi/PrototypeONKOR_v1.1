@@ -13,7 +13,6 @@ import com.google.android.material.snackbar.Snackbar
 
 //549 711 581 21 - 1 юзер
 
-
 class AuthorizationActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityAuthorizationBinding

@@ -37,6 +37,7 @@
         android:layout_width="385dp"
         android:layout_height="55dp"
         android:layout_marginTop="8dp"
+        android:padding="10dp"
         android:textColor="@color/black"
         android:textColorHint="@color/black"
         android:textSize="25sp"

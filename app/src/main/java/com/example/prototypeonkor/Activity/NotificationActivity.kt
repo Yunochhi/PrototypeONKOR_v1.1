@@ -39,8 +39,6 @@ class NotificationActivity : AppCompatActivity() {
             startActivity(Intent(this, MainActivity::class.java))
         }
 
-
-
         val snils = prefs.getSnilsString()
 
         lifecycleScope.launch {
