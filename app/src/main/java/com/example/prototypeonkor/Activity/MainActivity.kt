@@ -16,6 +16,7 @@ import com.example.prototypeonkor.APIService.*
 import com.example.prototypeonkor.Class.Notification
 import com.example.prototypeonkor.Class.PrefsHelper
 import com.example.prototypeonkor.Class.RetrofitInstance
+import com.example.prototypeonkor.Class.User
 import com.example.prototypeonkor.Fragments.*
 import com.example.prototypeonkor.R
 import com.example.prototypeonkor.databinding.ActivityMainBinding
@@ -31,6 +32,7 @@ class MainActivity : AppCompatActivity() {
     private val CHANNEL_ID = "ONKOR"
     private var snils = ""
     private lateinit var prefs: PrefsHelper
+    private var user: User? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,9 +52,11 @@ class MainActivity : AppCompatActivity() {
 
         lifecycleScope.launch {
             pullNotifRec(snils)
+            fillFullname(snils)
         }
 
-        binding.actionBtn.setOnClickListener { startActivity(Intent(this, ProfileActivity::class.java)) }
+        binding.actionBtn.setOnClickListener {
+            startActivity(Intent(this, ProfileActivity::class.java)) }
 
         binding.notificationsBtn.setOnClickListener {
             val intent = Intent(this, NotificationActivity::class.java)
@@ -70,7 +74,21 @@ class MainActivity : AppCompatActivity() {
         }
         replaceFragment(MainFragment())
     }
-
+    private suspend fun fillFullname(snils: String) {
+        val snilsRequest = SnilsRequest(snils)
+        val response = withContext(Dispatchers.IO) {
+            RetrofitInstance.apiService.getUserInfo(snilsRequest)
+        }
+        if (response.isSuccessful)
+        {
+            user = response.body()
+            binding.userFullName.text = user?.fullName.toString()
+        }
+        else
+        {
+            response.errorBody()?.string()?.let { Log.d("errBody", it) }
+        }
+    }
     private suspend fun pullNotifRec(snils: String)
     {
         try
