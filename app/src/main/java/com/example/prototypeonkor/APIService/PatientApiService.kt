@@ -22,10 +22,6 @@ data class ProtocolRequest(
     val fileName: String
 )
 
-data class NotificationRequest(
-    val snils: String,
-    val notification: Notification
-)
 
 interface PatientApiService {
     //protocols
