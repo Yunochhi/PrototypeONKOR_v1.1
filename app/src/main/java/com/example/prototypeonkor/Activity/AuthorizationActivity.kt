@@ -21,6 +21,7 @@ import okhttp3.ResponseBody
 import retrofit2.Response
 
 //549 711 581 21 - 1 юзер
+//492 616 636 27 - 2 юзер
 
 class AuthorizationActivity : AppCompatActivity() {
 
@@ -55,20 +56,16 @@ class AuthorizationActivity : AppCompatActivity() {
             if (splitedSnils.size != 4 || splitedSnils[0].length != 3 || splitedSnils[1].length != 3
                 || splitedSnils[2].length != 3 || splitedSnils[3].length != 2
             ) {
-                Snackbar.make(binding.root, "Введите корректный СНИЛС ❗", Snackbar.LENGTH_SHORT)
-                    .show()
+                Snackbar.make(binding.root, "Введите корректный СНИЛС ❗", Snackbar.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
-            prefs.saveSnilsString(snils)
-            val intent = Intent(this@AuthorizationActivity, MainActivity::class.java)
-            startActivity(intent)
+
             lifecycleScope.launch {
                 val response = getResponce(snils)
                 Log.d("DASDASDA", response.message())
 
-                withContext(Dispatchers.Main)
-                {
-                    if (response.isSuccessful) {
+                withContext(Dispatchers.Main) {
+                    if (response.isSuccessful && response.body() != null) {
                         prefs.saveSnilsString(snils)
                         val intent = Intent(this@AuthorizationActivity, MainActivity::class.java)
                         startActivity(intent)

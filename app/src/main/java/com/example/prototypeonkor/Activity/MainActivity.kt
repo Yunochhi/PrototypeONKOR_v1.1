@@ -74,7 +74,9 @@ class MainActivity : AppCompatActivity() {
         }
         replaceFragment(MainFragment())
     }
-    private suspend fun fillFullname(snils: String) {
+
+    private suspend fun fillFullname(snils: String)
+    {
         val snilsRequest = SnilsRequest(snils)
         val response = withContext(Dispatchers.IO) {
             RetrofitInstance.apiService.getUserInfo(snilsRequest)
@@ -89,6 +91,7 @@ class MainActivity : AppCompatActivity() {
             response.errorBody()?.string()?.let { Log.d("errBody", it) }
         }
     }
+
     private suspend fun pullNotifRec(snils: String)
     {
         try

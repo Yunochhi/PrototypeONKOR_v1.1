@@ -32,19 +32,21 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-                android:id="@+id/userFullName"
-                android:layout_width="130dp"
-                android:layout_height="match_parent"
-                android:layout_margin="15dp"
-                android:orientation="vertical"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/actionBtn"
-                app:layout_constraintTop_toTopOf="parent"
-                android:gravity="start"
-                android:text="Иван dasdasdad"
-                android:textColor="@color/black"
-                android:textSize="25sp"
-                android:textStyle="bold" />
+            android:id="@+id/userFullName"
+            android:layout_width="258dp"
+            android:layout_height="64dp"
+            android:layout_margin="15dp"
+            android:layout_marginStart="12dp"
+            android:gravity="start"
+            android:orientation="vertical"
+            android:text="Иван\nИванов"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/actionBtn"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.491" />
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/notificationsBtn"

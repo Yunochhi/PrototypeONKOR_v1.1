@@ -70,7 +70,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginStart="15dp"
+            android:layout_marginStart="-5dp"
             android:gravity="center_vertical"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -78,24 +78,20 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:id="@+id/userFirstName"
-                android:layout_width="wrap_content"
+                android:id="@+id/userFullName"
+                android:layout_width="258dp"
                 android:layout_height="wrap_content"
+                android:layout_margin="15dp"
                 android:gravity="start"
-                android:text="Иван"
+                android:orientation="vertical"
+                android:text="Иван\nИванов"
                 android:textColor="@color/black"
                 android:textSize="25sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/userLastName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="start"
-                android:text="Иванов"
-                android:textColor="@color/black"
-                android:textSize="25sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/actionBtn"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.491" />
         </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatImageButton
@@ -153,7 +149,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="🎂 Дата рождения:"
+                        android:text="🎂 Возраст:"
                         android:textColor="@color/grey"
                         android:textSize="19sp"
                         android:textStyle="bold" />
@@ -162,8 +158,8 @@
                         android:id="@+id/date"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="177dp"
-                        android:text="01.01.1990"
+                        android:layout_marginStart="109dp"
+                        android:text="43"
                         android:textColor="@color/grey"
                         android:textSize="19sp"
                         android:textStyle="bold" />
