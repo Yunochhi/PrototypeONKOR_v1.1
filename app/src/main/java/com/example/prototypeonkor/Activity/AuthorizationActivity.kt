@@ -53,7 +53,8 @@ class AuthorizationActivity : AppCompatActivity() {
             val splitedSnils = snils.split(" ").toTypedArray()
 
             if (splitedSnils.size != 4 || splitedSnils[0].length != 3 || splitedSnils[1].length != 3
-                || splitedSnils[2].length != 3 || splitedSnils[3].length != 2) {
+                || splitedSnils[2].length != 3 || splitedSnils[3].length != 2
+            ) {
                 Snackbar.make(binding.root, "Введите корректный СНИЛС ❗", Snackbar.LENGTH_SHORT)
                     .show()
                 return@setOnClickListener
@@ -61,7 +62,7 @@ class AuthorizationActivity : AppCompatActivity() {
             prefs.saveSnilsString(snils)
             val intent = Intent(this@AuthorizationActivity, MainActivity::class.java)
             startActivity(intent)
-           /* lifecycleScope.launch {
+            lifecycleScope.launch {
                 val response = getResponce(snils)
                 Log.d("DASDASDA", response.message())
 
@@ -71,20 +72,25 @@ class AuthorizationActivity : AppCompatActivity() {
                         prefs.saveSnilsString(snils)
                         val intent = Intent(this@AuthorizationActivity, MainActivity::class.java)
                         startActivity(intent)
-                    }
-                    else {
-                        Snackbar.make(binding.root, "Пользователь не найден ❗", Snackbar.LENGTH_SHORT).show()
+                    } else {
+                        Snackbar.make(
+                            binding.root,
+                            "Пользователь не найден ❗",
+                            Snackbar.LENGTH_SHORT
+                        ).show()
                     }
                 }
-            }*/
+            }
         }
     }
-   /* suspend fun getResponce(snils: String) : Response<User>{
+
+    suspend fun getResponce(snils: String): Response<User> {
         val snilsRequest = SnilsRequest(snils)
         val response = withContext(Dispatchers.IO) {
             RetrofitInstance.apiService.getUserInfo(snilsRequest)
         }
 
         return response
-    }*/
+
+    }
 }
