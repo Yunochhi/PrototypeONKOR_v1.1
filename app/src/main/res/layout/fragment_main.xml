@@ -19,10 +19,46 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
+        android:id="@+id/linearLayout5"
+        android:layout_width="415dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="20dp"
+        android:background="@xml/fragmentinfo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView">
+
+        <LinearLayout
+            android:layout_width="318dp"
+            android:layout_height="match_parent"
+            android:layout_margin="15dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Список обследований"
+                android:textColor="@color/black"
+                android:textSize="23sp"
+                android:layout_marginTop="-5dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/buttonListOfExaminations"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_gravity="center"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/next" />
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="415dp"
         android:layout_height="145dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="90dp"
         android:background="@xml/fragmentinfo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -145,7 +181,6 @@
             android:layout_marginEnd="10dp"
             android:background="@drawable/next" />
     </LinearLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

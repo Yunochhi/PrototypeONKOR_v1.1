@@ -65,7 +65,12 @@ class ProfileActivity : AppCompatActivity() {
         }
         if (response.isSuccessful) {
             user = response.body()
-            binding.userFullName.text = user?.fullName ?: ""
+            val fullName = user?.fullName ?: ""
+            val nameParts = fullName.split(" ")
+            val formattedName = nameParts.joinToString("\n")
+            withContext(Dispatchers.Main) {
+                binding.userFullName.text = formattedName
+            }
         } else {
             response.errorBody()?.string()?.let { Log.d("errBody", it) }
         }

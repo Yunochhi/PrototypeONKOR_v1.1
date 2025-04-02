@@ -75,19 +75,20 @@ class MainActivity : AppCompatActivity() {
         replaceFragment(MainFragment())
     }
 
-    private suspend fun fillFullname(snils: String)
-    {
+    private suspend fun fillFullname(snils: String) {
         val snilsRequest = SnilsRequest(snils)
         val response = withContext(Dispatchers.IO) {
             RetrofitInstance.apiService.getUserInfo(snilsRequest)
         }
-        if (response.isSuccessful)
-        {
+        if (response.isSuccessful) {
             user = response.body()
-            binding.userFullName.text = user?.fullName.toString()
-        }
-        else
-        {
+            val fullName = user?.fullName ?: ""
+            val nameParts = fullName.split(" ")
+            val formattedName = nameParts.joinToString("\n")
+            withContext(Dispatchers.Main) {
+                binding.userFullName.text = formattedName
+            }
+        } else {
             response.errorBody()?.string()?.let { Log.d("errBody", it) }
         }
     }

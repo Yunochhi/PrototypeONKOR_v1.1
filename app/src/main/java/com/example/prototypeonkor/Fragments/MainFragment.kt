@@ -1,8 +1,10 @@
 package com.example.prototypeonkor.Fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.ImageButton
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
@@ -12,8 +14,11 @@ import com.example.prototypeonkor.Adapters.ProtocolsMainAdapter
 import com.example.prototypeonkor.Class.RetrofitInstance
 import com.example.prototypeonkor.R
 import com.example.prototypeonkor.APIService.SnilsRequest
+import com.example.prototypeonkor.Activity.ExaminationsActivity
+import com.example.prototypeonkor.Activity.MainActivity
 import com.example.prototypeonkor.Adapters.AppointmentsMainAdapter
 import com.example.prototypeonkor.Adapters.DispensaryObservationMainAdapter
+import com.example.prototypeonkor.databinding.ActivityProfileBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -22,6 +27,7 @@ import kotlinx.coroutines.withContext
 class MainFragment : Fragment(R.layout.fragment_main) {
 
     private lateinit var mainProtocolsRec: RecyclerView
+    private lateinit var binding: ActivityProfileBinding
     private lateinit var mainVisitsRec: RecyclerView
     private lateinit var mainDispensaryRec: RecyclerView
     private var snils: String = ""
@@ -30,6 +36,8 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     {
         super.onViewCreated(view, savedInstanceState)
 
+        binding = ActivityProfileBinding.inflate(layoutInflater)
+        val imageButton = view.findViewById<ImageButton>(R.id.buttonListOfExaminations)
         mainProtocolsRec = view.findViewById(R.id.mainProtocolsRec)
         mainVisitsRec = view.findViewById(R.id.mainVisitsRec)
         mainDispensaryRec = view.findViewById(R.id.mainDispensaryRec)
@@ -37,6 +45,9 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         view.findViewById<AppCompatImageButton>(R.id.buttonAllProtocols).setOnClickListener { replaceFragment(ProtocolsFragment()) }
         view.findViewById<AppCompatImageButton>(R.id.buttonAllVisits).setOnClickListener { replaceFragment(VisitsFragment()) }
         view.findViewById<AppCompatImageButton>(R.id.buttonAllDispancer).setOnClickListener { replaceFragment(DispancerFragment()) }
+        imageButton.setOnClickListener {
+            val intent = Intent(requireContext(), ExaminationsActivity::class.java)
+            startActivity(intent)}
 
         mainProtocolsRec.layoutManager = LinearLayoutManager(requireContext())
         mainVisitsRec.layoutManager = LinearLayoutManager(requireContext())

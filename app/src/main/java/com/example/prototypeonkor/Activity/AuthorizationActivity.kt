@@ -17,11 +17,9 @@ import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import okhttp3.ResponseBody
 import retrofit2.Response
 
 //549 711 581 21 - 1 юзер
-//492 616 636 27 - 2 юзер
 
 class AuthorizationActivity : AppCompatActivity() {
 
