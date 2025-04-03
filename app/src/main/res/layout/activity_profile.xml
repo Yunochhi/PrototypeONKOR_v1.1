@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <androidx.constraintlayout.widget.ConstraintLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -9,7 +8,6 @@
     android:layout_height="match_parent"
     android:background="@xml/mainfone"
     tools:context=".Activity.ProfileActivity">
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
@@ -47,7 +45,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout2"
         android:layout_width="match_parent"
-        android:layout_height="95dp"
+        android:layout_height="100dp"
         android:layout_marginHorizontal="15dp"
         android:layout_marginTop="20dp"
         android:background="@xml/profileinfo"
@@ -67,19 +65,9 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginStart="-5dp"
-            android:gravity="center_vertical"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/actionBtn"
-            app:layout_constraintTop_toTopOf="parent">
-
             <TextView
                 android:id="@+id/userFullName"
-                android:layout_width="258dp"
+                android:layout_width="238dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
                 android:gravity="start"
@@ -90,14 +78,12 @@
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/actionBtn"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.491" />
-        </LinearLayout>
+                app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/buttonExit"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
             android:layout_marginEnd="15dp"
             android:background="@drawable/logout"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -106,7 +92,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -116,7 +102,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
             <TextView
@@ -134,23 +120,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="15dp"
-                android:layout_marginTop="0dp"
-
+                android:layout_marginTop="20dp"
+                android:background="@xml/profileinfo"
                 android:orientation="vertical"
-                android:padding="16dp">
+                android:padding="15dp">
 
                 <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:background="@xml/border"
-                    android:padding="8dp">
+                    android:layout_height="wrap_content">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="🎂 Возраст:"
-                        android:textColor="@color/grey"
+                        android:text="🎂 Дата рождения:"
+                        android:textColor="@color/black"
                         android:textSize="19sp"
                         android:textStyle="bold" />
 
@@ -158,9 +141,9 @@
                         android:id="@+id/date"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="109dp"
-                        android:text="43"
-                        android:textColor="@color/grey"
+                        android:layout_marginStart="177dp"
+                        android:text="01.01.1990"
+                        android:textColor="@color/black"
                         android:textSize="19sp"
                         android:textStyle="bold" />
                 </FrameLayout>
@@ -168,15 +151,13 @@
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:background="@xml/border"
-                    android:padding="8dp">
+                    android:layout_marginTop="14dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="🚻 Пол:"
-                        android:textColor="@color/grey"
+                        android:textColor="@color/black"
                         android:textSize="19sp"
                         android:textStyle="bold" />
 
@@ -186,7 +167,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="71dp"
                         android:text="Мужской"
-                        android:textColor="@color/grey"
+                        android:textColor="@color/black"
                         android:textSize="19sp"
                         android:textStyle="bold" />
                 </FrameLayout>
@@ -194,25 +175,23 @@
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:background="@xml/border"
-                    android:padding="8dp">
+                    android:layout_marginTop="14dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="⚖️ Вес:"
-                        android:textColor="@color/grey"
+                        android:textColor="@color/black"
                         android:textSize="19sp"
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/ves"
+                        android:id="@+id/weight"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="71dp"
                         android:text="65 кг"
-                        android:textColor="@color/grey"
+                        android:textColor="@color/black"
                         android:textSize="19sp"
                         android:textStyle="bold" />
                 </FrameLayout>
@@ -220,25 +199,23 @@
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:background="@xml/border"
-                    android:padding="8dp">
+                    android:layout_marginTop="14dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="📏 Рост:"
-                        android:textColor="@color/grey"
+                        android:textColor="@color/black"
                         android:textSize="19sp"
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/rost"
+                        android:id="@+id/hight"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="78dp"
                         android:text="181 см"
-                        android:textColor="@color/grey"
+                        android:textColor="@color/black"
                         android:textSize="19sp"
                         android:textStyle="bold" />
                 </FrameLayout>
@@ -246,15 +223,13 @@
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:background="@xml/border"
-                    android:padding="8dp">
+                    android:layout_marginTop="14dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="♥ Группа крови:"
-                        android:textColor="@color/grey"
+                        android:textColor="@color/black"
                         android:textSize="19sp"
                         android:textStyle="bold" />
 
@@ -264,7 +239,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="158dp"
                         android:text="Первая"
-                        android:textColor="@color/grey"
+                        android:textColor="@color/black"
                         android:textSize="19sp"
                         android:textStyle="bold" />
                 </FrameLayout>
@@ -272,25 +247,23 @@
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:background="@xml/border"
-                    android:padding="8dp">
+                    android:layout_marginTop="14dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="🏠 Город:"
-                        android:textColor="@color/grey"
+                        android:textColor="@color/black"
                         android:textSize="19sp"
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/town"
+                        android:id="@+id/city"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="90dp"
                         android:text="Москва"
-                        android:textColor="@color/grey"
+                        android:textColor="@color/black"
                         android:textSize="19sp"
                         android:textStyle="bold" />
                 </FrameLayout>
@@ -298,25 +271,23 @@
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:background="@xml/border"
-                    android:padding="8dp">
+                    android:layout_marginTop="14dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="📍 Адрес:"
-                        android:textColor="@color/grey"
+                        android:textColor="@color/black"
                         android:textSize="19sp"
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/street"
+                        android:id="@+id/adress"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="94dp"
                         android:text="ул. Ленина, 5"
-                        android:textColor="@color/grey"
+                        android:textColor="@color/black"
                         android:textSize="19sp"
                         android:textStyle="bold" />
                 </FrameLayout>
@@ -324,15 +295,13 @@
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:background="@xml/border"
-                    android:padding="8dp">
+                    android:layout_marginTop="14dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="☎ Телефон:"
-                        android:textColor="@color/grey"
+                        android:textColor="@color/black"
                         android:textSize="19sp"
                         android:textStyle="bold" />
 
@@ -342,7 +311,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="118dp"
                         android:text="+7 900 000 00 00"
-                        android:textColor="@color/grey"
+                        android:textColor="@color/black"
                         android:textSize="19sp"
                         android:textStyle="bold" />
                 </FrameLayout>
@@ -353,9 +322,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="30dp"
-                android:layout_marginTop="0dp"
+                android:layout_marginTop="25dp"
                 android:text="Медицинские документы"
-                android:textColor="@color/grey"
+                android:textColor="@color/black"
                 android:textSize="30sp"
                 android:textStyle="bold" />
 
@@ -363,17 +332,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="15dp"
-                android:layout_marginTop="0dp"
-
+                android:layout_marginTop="20dp"
+                android:background="@xml/profileinfo"
                 android:orientation="vertical"
                 android:padding="16dp">
 
                 <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:background="@xml/border"
-                    android:padding="8dp">
+                    android:layout_height="wrap_content">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -397,9 +363,7 @@
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:background="@xml/border"
-                    android:padding="8dp">
+                    android:layout_marginTop="14dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -423,10 +387,8 @@
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:background="@xml/border"
-                    android:padding="8dp">
-
+                    android:layout_marginTop="14dp"
+                    android:background="@xml/border">
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

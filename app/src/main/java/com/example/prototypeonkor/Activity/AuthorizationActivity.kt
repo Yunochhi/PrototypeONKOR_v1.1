@@ -60,7 +60,6 @@ class AuthorizationActivity : AppCompatActivity() {
 
             lifecycleScope.launch {
                 val response = getResponce(snils)
-                Log.d("DASDASDA", response.message())
 
                 withContext(Dispatchers.Main) {
                     if (response.isSuccessful && response.body() != null) {

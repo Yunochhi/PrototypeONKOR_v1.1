@@ -5,6 +5,7 @@ import android.app.NotificationManager
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
@@ -69,7 +70,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_visits -> replaceFragment(VisitsFragment())
                 R.id.navigation_home -> replaceFragment(MainFragment())
                 R.id.navigation_dispensaryobservation -> replaceFragment(DispancerFragment())
-                R.id.navigation_chat -> replaceFragment(ChatFragment())
+                R.id.navigation_chat -> replaceFragment(TechChatFragment(), R.id.chatFragmentContainer)
             }
             true
         }
@@ -85,9 +86,9 @@ class MainActivity : AppCompatActivity() {
             user = response.body()
             val fullName = user?.fullName ?: ""
             val nameParts = fullName.split(" ")
-            val formattedName = nameParts.joinToString("\n")
+            /*val formattedName = nameParts.joinToString("\n")*/
             withContext(Dispatchers.Main) {
-                binding.userFullName.text = formattedName
+                binding.userFullName.text = "${nameParts[0]}\n${nameParts[1]+" "+ nameParts[2]}"
             }
         } else {
             response.errorBody()?.string()?.let { Log.d("errBody", it) }
@@ -134,12 +135,15 @@ class MainActivity : AppCompatActivity() {
         getSystemService(NotificationManager::class.java)?.createNotificationChannel(NotificationChannel(CHANNEL_ID, CHANNEL_ID, NotificationManager.IMPORTANCE_DEFAULT))
     }
 
-    private fun replaceFragment(fragment: Fragment) {
+    private fun replaceFragment(fragment: Fragment, containerId: Int = R.id.fragment_container) {
 
         val bundle = Bundle()
         bundle.putString("SNILS", snils)
         fragment.arguments = bundle
 
-        supportFragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit()
+        binding.fragmentContainer.visibility = if (containerId == R.id.fragment_container) View.VISIBLE else View.GONE
+        binding.chatFragmentContainer.visibility = if (containerId == R.id.chatFragmentContainer) View.VISIBLE else View.GONE
+
+        supportFragmentManager.beginTransaction().replace(containerId, fragment).commit()
     }
 }

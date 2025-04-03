@@ -16,6 +16,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import androidx.lifecycle.lifecycleScope
+import com.example.prototypeonkor.Enum.Gender
 
 class ProfileActivity : AppCompatActivity() {
 
@@ -38,14 +39,7 @@ class ProfileActivity : AppCompatActivity() {
         val snils = prefs.getSnilsString()
 
         lifecycleScope.launch {
-            fillFullname(snils)
-            Age(snils)
-            Height(snils)
-            Snils(snils)
-            City(snils)
-            Address(snils)
-            PhoneNumber(snils)
-            BloodGroup(snils)
+            fillPatientInfo(snils)
         }
 
         binding.buttonExit.setOnClickListener {
@@ -58,7 +52,7 @@ class ProfileActivity : AppCompatActivity() {
         }
     }
 
-    private suspend fun fillFullname(snils: String) {
+    private suspend fun fillPatientInfo(snils: String) {
         val snilsRequest = SnilsRequest(snils)
         val response = withContext(Dispatchers.IO) {
             RetrofitInstance.apiService.getUserInfo(snilsRequest)
@@ -67,105 +61,25 @@ class ProfileActivity : AppCompatActivity() {
             user = response.body()
             val fullName = user?.fullName ?: ""
             val nameParts = fullName.split(" ")
-            val formattedName = nameParts.joinToString("\n")
+       /*     val formattedName = nameParts.joinToString("\n")*/
             withContext(Dispatchers.Main) {
-                binding.userFullName.text = formattedName
+                binding.userFullName.text = "${nameParts[0]}\n${nameParts[1]+" "+ nameParts[2]}"
+                binding.date.text = (user?.age ?: "").toString()
+                binding.gender.text = when (user?.gender)
+                {
+                    Gender.MALE -> "Мужчина"
+                    Gender.FEMALE -> "Женщина"
+                    else -> ""
+                }
+                binding.hight.text = ((user?.height ?: ("" + "см"))).toString()
+                binding.snils.text = (user?.snils ?: "").toString()
+                binding.city.text = (user?.city ?: "").toString()
+                binding.adress.text = (user?.address ?: "").toString()
+                binding.phonenumber.text = (user?.phoneNumber ?: "").toString()
+                binding.groupblood.text = (user?.bloodGroup ?: "").toString()
             }
         } else {
             response.errorBody()?.string()?.let { Log.d("errBody", it) }
         }
     }
-
-    private suspend fun Age(snils: String) {
-        val snilsRequest = SnilsRequest(snils)
-        val response = withContext(Dispatchers.IO) {
-            RetrofitInstance.apiService.getUserInfo(snilsRequest)
-        }
-        if (response.isSuccessful) {
-            user = response.body()
-            binding.date.text = (user?.age ?: "").toString()
-        } else {
-            response.errorBody()?.string()?.let { Log.d("errBody", it) }
-        }
-    }
-
-    private suspend fun Height (snils: String) {
-        val snilsRequest = SnilsRequest(snils)
-        val response = withContext(Dispatchers.IO) {
-            RetrofitInstance.apiService.getUserInfo(snilsRequest)
-        }
-        if (response.isSuccessful) {
-            user = response.body()
-            binding.ves.text = ((user?.height ?: ("" + "кг"))).toString()
-        } else {
-            response.errorBody()?.string()?.let { Log.d("errBody", it) }
-        }
-    }
-
-    private suspend fun Snils (snils: String) {
-        val snilsRequest = SnilsRequest(snils)
-        val response = withContext(Dispatchers.IO) {
-            RetrofitInstance.apiService.getUserInfo(snilsRequest)
-        }
-        if (response.isSuccessful) {
-            user = response.body()
-            binding.insurancepolicy.text = (user?.snils ?: "").toString()
-        } else {
-            response.errorBody()?.string()?.let { Log.d("errBody", it) }
-        }
-    }
-
-    private suspend fun City (snils: String) {
-        val snilsRequest = SnilsRequest(snils)
-        val response = withContext(Dispatchers.IO) {
-            RetrofitInstance.apiService.getUserInfo(snilsRequest)
-        }
-        if (response.isSuccessful) {
-            user = response.body()
-            binding.town.text = (user?.city ?: "").toString()
-        } else {
-            response.errorBody()?.string()?.let { Log.d("errBody", it) }
-        }
-    }
-
-    private suspend fun Address (snils: String) {
-        val snilsRequest = SnilsRequest(snils)
-        val response = withContext(Dispatchers.IO) {
-            RetrofitInstance.apiService.getUserInfo(snilsRequest)
-        }
-        if (response.isSuccessful) {
-            user = response.body()
-            binding.street.text = (user?.address ?: "").toString()
-        } else {
-            response.errorBody()?.string()?.let { Log.d("errBody", it) }
-        }
-    }
-
-    private suspend fun PhoneNumber (snils: String) {
-        val snilsRequest = SnilsRequest(snils)
-        val response = withContext(Dispatchers.IO) {
-            RetrofitInstance.apiService.getUserInfo(snilsRequest)
-        }
-        if (response.isSuccessful) {
-            user = response.body()
-            binding.phonenumber.text = (user?.phoneNumber ?: "").toString()
-        } else {
-            response.errorBody()?.string()?.let { Log.d("errBody", it) }
-        }
-    }
-
-    private suspend fun BloodGroup (snils: String) {
-        val snilsRequest = SnilsRequest(snils)
-        val response = withContext(Dispatchers.IO) {
-            RetrofitInstance.apiService.getUserInfo(snilsRequest)
-        }
-        if (response.isSuccessful) {
-            user = response.body()
-            binding.groupblood.text = (user?.bloodGroup ?: "").toString()
-        } else {
-            response.errorBody()?.string()?.let { Log.d("errBody", it) }
-        }
-    }
-
-
 }
