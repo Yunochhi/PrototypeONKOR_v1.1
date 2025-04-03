@@ -50,6 +50,7 @@
         android:id="@+id/chatRecyclerView"
         android:layout_width="411dp"
         android:layout_height="541dp"
+        android:background="@xml/borderchat"
         android:layout_marginLeft="20dp"
         android:padding="8dp" />
 
