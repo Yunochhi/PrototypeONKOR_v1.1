@@ -69,6 +69,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_visits -> replaceFragment(VisitsFragment())
                 R.id.navigation_home -> replaceFragment(MainFragment())
                 R.id.navigation_dispensaryobservation -> replaceFragment(DispancerFragment())
+                R.id.navigation_chat -> replaceFragment(ChatFragment())
             }
             true
         }

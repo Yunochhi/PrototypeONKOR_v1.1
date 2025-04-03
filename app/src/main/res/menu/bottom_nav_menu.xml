@@ -19,4 +19,8 @@
         android:id="@+id/navigation_protocols"
         android:icon="@drawable/protocol"
         android:title="@string/protocols" />
+    <item
+        android:id="@+id/navigation_chat"
+        android:icon="@drawable/chat"
+        android:title="@string/chat" />
 </menu>
