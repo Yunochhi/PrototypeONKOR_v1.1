@@ -8,7 +8,7 @@
     android:background="@xml/mainfone"
     tools:context=".Activity.MainActivity">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="100dp"
@@ -50,14 +50,13 @@
             android:id="@+id/notificationsBtn"
             android:layout_width="45dp"
             android:layout_height="45dp"
+            android:layout_marginEnd="15dp"
             android:background="@drawable/bell"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_gravity="center_vertical"
-
         />
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <FrameLayout
         android:id="@+id/fragment_container"
@@ -72,6 +71,8 @@
         android:id="@+id/chatFragmentContainer"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:clickable="true"
+        android:focusable="true"
         app:layout_constraintBottom_toTopOf="@+id/bottomNavigationBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

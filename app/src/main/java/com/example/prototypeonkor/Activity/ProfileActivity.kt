@@ -48,7 +48,7 @@ class ProfileActivity : AppCompatActivity() {
         }
 
         binding.backBtn.setOnClickListener {
-            startActivity(Intent(this, MainActivity::class.java))
+            finish()
         }
     }
 
@@ -61,9 +61,8 @@ class ProfileActivity : AppCompatActivity() {
             user = response.body()
             val fullName = user?.fullName ?: ""
             val nameParts = fullName.split(" ")
-       /*     val formattedName = nameParts.joinToString("\n")*/
             withContext(Dispatchers.Main) {
-                binding.userFullName.text = "${nameParts[0]}\n${nameParts[1]+" "+ nameParts[2]}"
+                binding.userFullName.text = "${nameParts[0]}\n${nameParts[1]} ${nameParts[2]}"
                 binding.date.text = (user?.age ?: "").toString()
                 binding.gender.text = when (user?.gender)
                 {
@@ -71,7 +70,7 @@ class ProfileActivity : AppCompatActivity() {
                     Gender.FEMALE -> "Женщина"
                     else -> ""
                 }
-                binding.hight.text = ((user?.height ?: ("" + "см"))).toString()
+                binding.hight.text = "${user?.height} см"
                 binding.snils.text = (user?.snils ?: "").toString()
                 binding.city.text = (user?.city ?: "").toString()
                 binding.adress.text = (user?.address ?: "").toString()
