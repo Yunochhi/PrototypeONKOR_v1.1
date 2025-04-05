@@ -10,8 +10,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.prototypeonkor.APIService.SnilsRequest
 import com.example.prototypeonkor.Adapters.NotificationsAdapter
-import com.example.prototypeonkor.Class.PrefsHelper
-import com.example.prototypeonkor.Class.RetrofitInstance
+import com.example.prototypeonkor.Classes.PrefsHelper
+import com.example.prototypeonkor.Objects.RetrofitInstance
 import com.example.prototypeonkor.databinding.ActivityNotificationBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

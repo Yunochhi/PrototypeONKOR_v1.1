@@ -1,4 +1,4 @@
-package com.example.prototypeonkor.Class
+package com.example.prototypeonkor.Objects
 
 import com.example.prototypeonkor.APIService.PatientApiService
 import retrofit2.Retrofit

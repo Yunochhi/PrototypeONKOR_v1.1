@@ -1,6 +1,6 @@
-package com.example.prototypeonkor.Class
+package com.example.prototypeonkor.Classes
 
-import com.example.prototypeonkor.Enum.Gender
+import com.example.prototypeonkor.Enums.Gender
 
 data class User(
     val snils:String,

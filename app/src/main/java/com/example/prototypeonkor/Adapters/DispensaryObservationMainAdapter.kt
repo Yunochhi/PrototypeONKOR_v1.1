@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.prototypeonkor.Class.DispensaryObservation
+import com.example.prototypeonkor.Classes.DispensaryObservation
 import com.example.prototypeonkor.R
 
 class DispensaryObservationMainAdapter(dispensary: List<DispensaryObservation>) : RecyclerView.Adapter<DispensaryObservationMainAdapter.ViewHolder>() {

@@ -1,11 +1,10 @@
 package com.example.prototypeonkor.APIService
 
-import com.example.prototypeonkor.Class.Appointment
-import com.example.prototypeonkor.Class.DispensaryObservation
-import com.example.prototypeonkor.Class.Notification
-import com.example.prototypeonkor.Class.ProtocolInfo
-import com.example.prototypeonkor.Class.User
-import okhttp3.Response
+import com.example.prototypeonkor.Classes.Appointment
+import com.example.prototypeonkor.Classes.DispensaryObservation
+import com.example.prototypeonkor.Classes.Notification
+import com.example.prototypeonkor.Classes.ProtocolInfo
+import com.example.prototypeonkor.Classes.User
 import okhttp3.ResponseBody
 import retrofit2.http.Body
 import retrofit2.http.POST

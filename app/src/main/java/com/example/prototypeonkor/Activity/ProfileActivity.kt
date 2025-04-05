@@ -1,22 +1,22 @@
 package com.example.prototypeonkor.Activity
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.prototypeonkor.Class.PrefsHelper
-import com.example.prototypeonkor.Class.RetrofitInstance
-import com.example.prototypeonkor.Class.User
+import com.example.prototypeonkor.Classes.PrefsHelper
+import com.example.prototypeonkor.Objects.RetrofitInstance
+import com.example.prototypeonkor.Classes.User
 import com.example.prototypeonkor.APIService.SnilsRequest
 import com.example.prototypeonkor.databinding.ActivityProfileBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import androidx.lifecycle.lifecycleScope
-import com.example.prototypeonkor.Enum.Gender
+import com.example.prototypeonkor.Objects.SessionManager
+import com.example.prototypeonkor.Enums.Gender
 
 class ProfileActivity : AppCompatActivity() {
 
@@ -43,8 +43,7 @@ class ProfileActivity : AppCompatActivity() {
         }
 
         binding.buttonExit.setOnClickListener {
-            prefs.saveSnilsString("")
-            startActivity(Intent(this, AuthorizationActivity::class.java))
+            SessionManager.endSession(this)
         }
 
         binding.backBtn.setOnClickListener {

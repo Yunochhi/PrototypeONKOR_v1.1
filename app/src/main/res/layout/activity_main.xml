@@ -21,7 +21,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/actionBtn"
+            android:id="@+id/profileBtn"
             android:layout_width="65dp"
             android:layout_height="65dp"
             android:layout_gravity="center_vertical"
@@ -43,7 +43,7 @@
             android:textSize="25sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/actionBtn"
+            app:layout_constraintStart_toEndOf="@+id/profileBtn"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatImageButton

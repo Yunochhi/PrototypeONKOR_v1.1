@@ -2,16 +2,15 @@ package com.example.prototypeonkor.Activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import com.example.prototypeonkor.APIService.SnilsRequest
-import com.example.prototypeonkor.Class.PrefsHelper
-import com.example.prototypeonkor.Class.RetrofitInstance
-import com.example.prototypeonkor.Class.User
+import com.example.prototypeonkor.Classes.PrefsHelper
+import com.example.prototypeonkor.Objects.RetrofitInstance
+import com.example.prototypeonkor.Classes.User
 import com.example.prototypeonkor.databinding.ActivityAuthorizationBinding
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.Dispatchers
@@ -25,6 +24,7 @@ class AuthorizationActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityAuthorizationBinding
     private lateinit var prefs: PrefsHelper
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAuthorizationBinding.inflate(layoutInflater)
@@ -67,11 +67,7 @@ class AuthorizationActivity : AppCompatActivity() {
                         val intent = Intent(this@AuthorizationActivity, MainActivity::class.java)
                         startActivity(intent)
                     } else {
-                        Snackbar.make(
-                            binding.root,
-                            "Пользователь не найден ❗",
-                            Snackbar.LENGTH_SHORT
-                        ).show()
+                        Snackbar.make(binding.root, "Пользователь не найден ❗", Snackbar.LENGTH_SHORT).show()
                     }
                 }
             }
@@ -83,8 +79,6 @@ class AuthorizationActivity : AppCompatActivity() {
         val response = withContext(Dispatchers.IO) {
             RetrofitInstance.apiService.getUserInfo(snilsRequest)
         }
-
         return response
-
     }
 }

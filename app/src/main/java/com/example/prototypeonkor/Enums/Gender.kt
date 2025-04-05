@@ -1,4 +1,4 @@
-package com.example.prototypeonkor.Enum
+package com.example.prototypeonkor.Enums
 
 enum class Gender {
     MALE,

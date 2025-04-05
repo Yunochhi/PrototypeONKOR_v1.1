@@ -11,7 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.prototypeonkor.APIService.ProtocolRequest
 import com.example.prototypeonkor.Adapters.ProtocolAdapter
-import com.example.prototypeonkor.Class.RetrofitInstance
+import com.example.prototypeonkor.Objects.RetrofitInstance
 import com.example.prototypeonkor.R
 import com.example.prototypeonkor.APIService.SnilsRequest
 import kotlinx.coroutines.CoroutineScope

@@ -1,16 +1,12 @@
 package com.example.prototypeonkor.Adapters
 
-import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.prototypeonkor.Class.Appointment
-import com.example.prototypeonkor.Class.DispensaryObservation
-import com.example.prototypeonkor.Enum.AppointmentStatus
+import com.example.prototypeonkor.Classes.DispensaryObservation
 import com.example.prototypeonkor.R
-import java.time.LocalDate
 
 class DispensaryAdapter(private val dispensaries: List<DispensaryObservation>) : RecyclerView.Adapter<DispensaryAdapter.ViewHolder>() {
 

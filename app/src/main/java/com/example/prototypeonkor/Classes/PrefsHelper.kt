@@ -1,4 +1,4 @@
-package com.example.prototypeonkor.Class
+package com.example.prototypeonkor.Classes
 
 import android.content.Context
 import android.content.SharedPreferences

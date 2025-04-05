@@ -6,8 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.prototypeonkor.Class.Appointment
-import com.example.prototypeonkor.Enum.AppointmentStatus
+import com.example.prototypeonkor.Classes.Appointment
+import com.example.prototypeonkor.Enums.AppointmentStatus
 import com.example.prototypeonkor.R
 import java.time.LocalDate
 

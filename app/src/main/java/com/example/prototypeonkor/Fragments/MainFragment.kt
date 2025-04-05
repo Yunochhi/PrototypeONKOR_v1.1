@@ -11,11 +11,10 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.prototypeonkor.Adapters.ProtocolsMainAdapter
-import com.example.prototypeonkor.Class.RetrofitInstance
+import com.example.prototypeonkor.Objects.RetrofitInstance
 import com.example.prototypeonkor.R
 import com.example.prototypeonkor.APIService.SnilsRequest
 import com.example.prototypeonkor.Activity.ExaminationsActivity
-import com.example.prototypeonkor.Activity.MainActivity
 import com.example.prototypeonkor.Adapters.AppointmentsMainAdapter
 import com.example.prototypeonkor.Adapters.DispensaryObservationMainAdapter
 import com.example.prototypeonkor.databinding.ActivityProfileBinding

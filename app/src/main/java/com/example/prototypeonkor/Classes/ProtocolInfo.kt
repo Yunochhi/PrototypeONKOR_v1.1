@@ -1,4 +1,4 @@
-package com.example.prototypeonkor.Class
+package com.example.prototypeonkor.Classes
 
 data class ProtocolInfo(
     val investigationName: String,

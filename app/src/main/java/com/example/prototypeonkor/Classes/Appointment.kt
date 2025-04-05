@@ -1,7 +1,6 @@
-package com.example.prototypeonkor.Class
+package com.example.prototypeonkor.Classes
 
-import com.example.prototypeonkor.Enum.AppointmentStatus
-import java.time.LocalDate
+import com.example.prototypeonkor.Enums.AppointmentStatus
 
 data class Appointment(
     val LPU: String,

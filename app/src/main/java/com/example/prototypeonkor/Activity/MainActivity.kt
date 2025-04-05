@@ -14,10 +14,11 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.example.prototypeonkor.APIService.*
-import com.example.prototypeonkor.Class.Notification
-import com.example.prototypeonkor.Class.PrefsHelper
-import com.example.prototypeonkor.Class.RetrofitInstance
-import com.example.prototypeonkor.Class.User
+import com.example.prototypeonkor.Classes.Notification
+import com.example.prototypeonkor.Classes.PrefsHelper
+import com.example.prototypeonkor.Objects.RetrofitInstance
+import com.example.prototypeonkor.Objects.SessionManager
+import com.example.prototypeonkor.Classes.User
 import com.example.prototypeonkor.Fragments.*
 import com.example.prototypeonkor.R
 import com.example.prototypeonkor.databinding.ActivityMainBinding
@@ -46,6 +47,8 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
+        SessionManager.initSessionTimer(this)
+
         createNotificationChannel()
 
         prefs = PrefsHelper(this)
@@ -56,10 +59,14 @@ class MainActivity : AppCompatActivity() {
             fillFullname(snils)
         }
 
-        binding.actionBtn.setOnClickListener {
-            startActivity(Intent(this, ProfileActivity::class.java)) }
+        binding.profileBtn.setOnClickListener {
+            SessionManager.startTimer(this)
+            val intent = Intent(this, ProfileActivity::class.java)
+            startActivity(intent)
+        }
 
         binding.notificationsBtn.setOnClickListener {
+            SessionManager.startTimer(this)
             val intent = Intent(this, NotificationActivity::class.java)
             startActivity(intent)
         }
@@ -77,6 +84,14 @@ class MainActivity : AppCompatActivity() {
         replaceFragment(MainFragment())
     }
 
+    override fun onResume() {
+        super.onResume()
+
+        if (SessionManager.isSessionExpired(this)) {
+            SessionManager.endSession(this)
+        }
+    }
+
     private suspend fun fillFullname(snils: String) {
         val snilsRequest = SnilsRequest(snils)
         val response = withContext(Dispatchers.IO) {
@@ -86,7 +101,6 @@ class MainActivity : AppCompatActivity() {
             user = response.body()
             val fullName = user?.fullName ?: ""
             val nameParts = fullName.split(" ")
-            /*val formattedName = nameParts.joinToString("\n")*/
             withContext(Dispatchers.Main) {
                 binding.userFullName.text = "${nameParts[0]}\n${nameParts[1]+" "+ nameParts[2]}"
             }
@@ -95,10 +109,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private suspend fun pullNotifRec(snils: String)
-    {
-        try
-        {
+    private suspend fun pullNotifRec(snils: String) {
+        try {
             val snilsRequest = SnilsRequest(snils)
             val appointments = withContext(Dispatchers.IO) {
                 RetrofitInstance.apiService.getAppointments(snilsRequest)
@@ -118,25 +130,22 @@ class MainActivity : AppCompatActivity() {
                     sendNotification(description)
                 }
         }
-        catch(e:Exception)
-        {
+        catch(e:Exception) {
             Log.e("MainActivity", "${e.message}")
         }
     }
 
-    private fun sendNotification(content: String)
-    {
+    private fun sendNotification(content: String) {
         val notification = NotificationCompat.Builder(this, CHANNEL_ID).setContentTitle("Напоминание о визите").setContentText(content).setSmallIcon(R.drawable.onkor).build()
         getSystemService(NotificationManager::class.java)?.notify(System.currentTimeMillis().toInt(), notification)
     }
 
-    private fun createNotificationChannel()
-    {
+    private fun createNotificationChannel() {
         getSystemService(NotificationManager::class.java)?.createNotificationChannel(NotificationChannel(CHANNEL_ID, CHANNEL_ID, NotificationManager.IMPORTANCE_DEFAULT))
     }
 
     private fun replaceFragment(fragment: Fragment, containerId: Int = R.id.fragment_container) {
-
+        SessionManager.startTimer(this)
         val bundle = Bundle()
         bundle.putString("SNILS", snils)
         fragment.arguments = bundle
