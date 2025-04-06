@@ -102,7 +102,7 @@ class MainActivity : AppCompatActivity() {
             val fullName = user?.fullName ?: ""
             val nameParts = fullName.split(" ")
             withContext(Dispatchers.Main) {
-                binding.userFullName.text = "${nameParts[0]}\n${nameParts[1]+" "+ nameParts[2]}"
+                binding.userFullName.text = "${nameParts[0]}"
             }
         } else {
             response.errorBody()?.string()?.let { Log.d("errBody", it) }

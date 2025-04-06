@@ -16,7 +16,12 @@ class MyApp : Application() {
     private fun setupLifecycleObserver() {
         ProcessLifecycleOwner.get().lifecycle.addObserver(
             object : DefaultLifecycleObserver {
+
                 override fun onStop(owner: LifecycleOwner) {
+                    SessionManager.updateLastActivityTime(this@MyApp)
+                }
+
+                override fun onResume(owner: LifecycleOwner) {
                     SessionManager.updateLastActivityTime(this@MyApp)
                 }
 
