@@ -36,7 +36,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         super.onViewCreated(view, savedInstanceState)
 
         binding = ActivityProfileBinding.inflate(layoutInflater)
-        val imageButton = view.findViewById<ImageButton>(R.id.buttonListOfExaminations)
+        //val imageButton = view.findViewById<ImageButton>(R.id.buttonListOfExaminations)
         mainProtocolsRec = view.findViewById(R.id.mainProtocolsRec)
         mainVisitsRec = view.findViewById(R.id.mainVisitsRec)
         mainDispensaryRec = view.findViewById(R.id.mainDispensaryRec)
@@ -44,9 +44,9 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         view.findViewById<AppCompatImageButton>(R.id.buttonAllProtocols).setOnClickListener { replaceFragment(ProtocolsFragment()) }
         view.findViewById<AppCompatImageButton>(R.id.buttonAllVisits).setOnClickListener { replaceFragment(VisitsFragment()) }
         view.findViewById<AppCompatImageButton>(R.id.buttonAllDispancer).setOnClickListener { replaceFragment(DispancerFragment()) }
-        imageButton.setOnClickListener {
-            val intent = Intent(requireContext(), ExaminationsActivity::class.java)
-            startActivity(intent)}
+        //imageButton.setOnClickListener {
+            //val intent = Intent(requireContext(), ExaminationsActivity::class.java)
+            //startActivity(intent)}
 
         mainProtocolsRec.layoutManager = LinearLayoutManager(requireContext())
         mainVisitsRec.layoutManager = LinearLayoutManager(requireContext())
