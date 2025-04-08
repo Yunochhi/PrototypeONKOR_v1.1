@@ -44,9 +44,6 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         view.findViewById<AppCompatImageButton>(R.id.buttonAllProtocols).setOnClickListener { replaceFragment(ProtocolsFragment()) }
         view.findViewById<AppCompatImageButton>(R.id.buttonAllVisits).setOnClickListener { replaceFragment(VisitsFragment()) }
         view.findViewById<AppCompatImageButton>(R.id.buttonAllDispancer).setOnClickListener { replaceFragment(DispancerFragment()) }
-        //imageButton.setOnClickListener {
-            //val intent = Intent(requireContext(), ExaminationsActivity::class.java)
-            //startActivity(intent)}
 
         mainProtocolsRec.layoutManager = LinearLayoutManager(requireContext())
         mainVisitsRec.layoutManager = LinearLayoutManager(requireContext())
