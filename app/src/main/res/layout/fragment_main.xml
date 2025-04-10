@@ -48,7 +48,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Обследования"
+                        android:text="Рекомендуемые обследования"
                         android:textColor="@color/black"
                         android:textSize="23sp"
                         android:textStyle="bold" />
@@ -67,7 +67,7 @@
                             android:gravity="center">
 
                             <ImageButton
-                                android:id="@+id/buttonAge"
+                                android:id="@+id/ageObsBtn"
                                 android:layout_width="50dp"
                                 android:layout_height="50dp"
                                 android:background="@drawable/age"
@@ -92,7 +92,7 @@
                             android:gravity="center">
 
                             <ImageButton
-                                android:id="@+id/ButtonGender"
+                                android:id="@+id/genderObsBtn"
                                 android:layout_width="50dp"
                                 android:layout_height="50dp"
                                 android:background="@drawable/gender"
@@ -117,7 +117,7 @@
                             android:gravity="center">
 
                             <ImageButton
-                                android:id="@+id/ButtonVirus"
+                                android:id="@+id/sickObsBtn"
                                 android:layout_width="50dp"
                                 android:layout_height="50dp"
                                 android:background="@drawable/virus"

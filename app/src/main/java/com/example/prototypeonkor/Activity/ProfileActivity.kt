@@ -61,7 +61,7 @@ class ProfileActivity : AppCompatActivity() {
             val fullName = user?.fullName ?: ""
             val nameParts = fullName.split(" ")
             withContext(Dispatchers.Main) {
-                binding.userFullName.text = "${nameParts[0]}\n${nameParts[1]} ${nameParts[2]}"
+                binding.userFullName.text = "${nameParts[0]}\n${nameParts[1][0]}. ${nameParts[2][0]}."
                 binding.date.text = (user?.age ?: "").toString()
                 binding.gender.text = when (user?.gender)
                 {
