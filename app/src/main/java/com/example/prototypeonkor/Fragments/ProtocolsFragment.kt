@@ -95,5 +95,4 @@ class ProtocolsFragment : Fragment(R.layout.fragment_protocols) {
         intent.flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
         startActivity(intent)
     }
-
 }

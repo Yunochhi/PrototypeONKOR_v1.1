@@ -5,13 +5,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.prototypeonkor.Classes.Message
+import com.example.prototypeonkor.Classes.Chat.Message
 import com.example.prototypeonkor.R
 import java.text.SimpleDateFormat
-import java.util.Date
 import java.util.Locale
 
-class MessageAdapter(private val messageList: MutableList<Message>) :
+class MessageAdapter(private val messageList: List<Message>) :
     RecyclerView.Adapter<MessageAdapter.MessageViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MessageViewHolder {
@@ -21,9 +20,9 @@ class MessageAdapter(private val messageList: MutableList<Message>) :
 
     override fun onBindViewHolder(holder: MessageViewHolder, position: Int) {
         val message = messageList[position]
-        holder.messageTextView.text = message.text
+        holder.messageTextView.text = message.content
         val dateFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
-        val time = dateFormat.format(Date(message.timestamp))
+        val time = dateFormat.format(message.timestamp)
         holder.timeTextView.text = time
     }
 

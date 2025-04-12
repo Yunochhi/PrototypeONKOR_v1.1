@@ -38,7 +38,7 @@ object SessionManager {
         sessionTimerHandler?.removeCallbacks(sessionTimeoutRunnable!!)
         sessionTimerHandler?.postDelayed(
             sessionTimeoutRunnable!!,
-            SESSION_TIMEOUT
+            SESSION_TIMEOUT.toLong()
         )
         updateLastActivityTime(context)
     }

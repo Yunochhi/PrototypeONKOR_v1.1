@@ -8,9 +8,11 @@
 
     <TextView
         android:id="@+id/messageTextView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_weight="1"
+        android:layout_marginRight="10dp"
+        android:layout_gravity="center_horizontal"
         android:text="Вывод сообщения"
         android:textSize="16sp"
         android:textStyle="bold"
@@ -18,13 +20,14 @@
 
     <TextView
         android:id="@+id/timeTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="6"
+        android:gravity="bottom"
         android:text="Время"
         android:textStyle="bold"
         android:textSize="15sp"
         android:textColor="@color/black"
-        android:gravity="end"
-        android:layout_marginStart="8dp"
-        android:layout_gravity="bottom" />
+        android:layout_marginStart="10dp"
+        android:layout_gravity="center" />
 </LinearLayout>

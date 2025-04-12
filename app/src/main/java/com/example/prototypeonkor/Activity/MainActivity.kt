@@ -104,8 +104,6 @@ class MainActivity : AppCompatActivity() {
             withContext(Dispatchers.Main) {
                 binding.userFullName.text = "${nameParts[0]}\n${nameParts[1][0]}. ${nameParts[2][0]}."
             }
-        } else {
-            response.errorBody()?.string()?.let { Log.d("errBody", it) }
         }
     }
 
