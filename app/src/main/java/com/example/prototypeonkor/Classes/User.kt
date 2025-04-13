@@ -2,9 +2,10 @@ package com.example.prototypeonkor.Classes
 
 import com.example.prototypeonkor.Enums.Gender
 import java.sql.Date
+import java.time.LocalDate
 
 data class User(
-    val userId: Long,
+    val id: Long,
     val snils:String,
     val age:Int,
     val fullName:String,
@@ -14,7 +15,7 @@ data class User(
     val height:Int,
     val phoneNumber:String,
     val bloodGroup:String,
-    val dateOfBirthday: Date,
-    val activeChatsCount: Int,
-    val isOnline: Boolean
+    val dateOfBirthday: LocalDate,
+    //var isOnline: Boolean,
+    //val activeChatsCount: Int
 )

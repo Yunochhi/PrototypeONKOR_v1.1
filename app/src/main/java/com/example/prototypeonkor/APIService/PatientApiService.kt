@@ -9,6 +9,7 @@ import com.example.prototypeonkor.Classes.Notification
 import com.example.prototypeonkor.Classes.ProtocolInfo
 import com.example.prototypeonkor.Classes.User
 import okhttp3.ResponseBody
+import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -28,6 +29,9 @@ data class ProtocolRequest(
     val fileName: String
 )
 
+data class ConnectRequest(
+    val userId:Long
+)
 
 interface PatientApiService {
     //patient
@@ -55,18 +59,21 @@ interface PatientApiService {
 
     //auth
     @POST("auth/login")
-    suspend fun getUserInfo(@Body snilsRequest: SnilsRequest): retrofit2.Response<User>
+    suspend fun getUserInfo(@Body snilsRequest: SnilsRequest): Response<User>
 
     @POST("auth/register")
     suspend fun registerUser(@Body user: User): ResponseBody
 
     //chat
     @POST("chat/user/{userId}")
-    suspend fun createChat(@Path("userId") userId: Long): retrofit2.Response<Chat>
+    suspend fun createChat(@Path("userId") userId: Long): Response<Chat>
 
     @GET("chat/{chatId}/messages")
-    suspend fun getChatMessages(@Path("userId") chatId: Long): retrofit2.Response<List<Message>>
+    suspend fun getChatMessages(@Path("chatId") chatId: Long): Response<List<Message>>
 
     @POST("chat/sendMessage")
     fun sendMessage(@Body chatMessage: MessageDTO): ResponseBody
+
+    @GET("chat/user/{userId}/active")
+    fun getUserActiveChats(@Path("userId") userId: Long): Response<List<Chat>>
 }
