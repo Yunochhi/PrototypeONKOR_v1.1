@@ -13,9 +13,9 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import com.example.prototypeonkor.APIService.*
 import com.example.prototypeonkor.Classes.Notification
 import com.example.prototypeonkor.Classes.PrefsHelper
+import com.example.prototypeonkor.Classes.Requests.SnilsRequest
 import com.example.prototypeonkor.Objects.RetrofitInstance
 import com.example.prototypeonkor.Objects.SessionManager
 import com.example.prototypeonkor.Classes.User

@@ -46,19 +46,27 @@ android {
 }
 
 dependencies {
-    // JSON Serialization
+    //WebSocket modules OkHttp
+    implementation (platform(libs.okhttp.bom))
+    implementation (libs.okhttp.urlconnection)
+    implementation (libs.okhttp)
+
+    // GSON serializer
+    implementation (libs.gson)
     implementation((libs.gsonConverter))
 
     // Kotlin Coroutines
     implementation(libs.kotlinx.coroutines.core)
-    implementation (libs.kotlinx.coroutines.android.v170)
+    implementation(libs.kotlinx.coroutines.android.v181)
+    implementation((libs.kotlincoroutinesandroid))
 
-    // Kotlin Coroutines lifecycle
+    // Kotlin lifecycle
     implementation(libs.androidx.lifecycle.livedata.ktx)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.lifecycle.process)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
 
-    // Kotlin Coroutines retrofit
+    // Kotlin retrofit
     implementation((libs.retrofit))
 
     implementation (libs.rxandroid)
@@ -66,11 +74,10 @@ dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.activity)
-    implementation((libs.kotlincoroutinesandroid))
+
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.navigation.runtime.android)
     implementation(libs.generativeai)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)
@@ -85,4 +92,5 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
 }

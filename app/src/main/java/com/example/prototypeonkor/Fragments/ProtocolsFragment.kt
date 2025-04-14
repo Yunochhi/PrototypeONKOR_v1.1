@@ -9,11 +9,11 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.prototypeonkor.APIService.ProtocolRequest
 import com.example.prototypeonkor.Adapters.ProtocolAdapter
 import com.example.prototypeonkor.Objects.RetrofitInstance
 import com.example.prototypeonkor.R
-import com.example.prototypeonkor.APIService.SnilsRequest
+import com.example.prototypeonkor.Classes.Requests.ProtocolRequest
+import com.example.prototypeonkor.Classes.Requests.SnilsRequest
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

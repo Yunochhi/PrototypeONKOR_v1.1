@@ -8,9 +8,9 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.prototypeonkor.APIService.SnilsRequest
 import com.example.prototypeonkor.Adapters.NotificationsAdapter
 import com.example.prototypeonkor.Classes.PrefsHelper
+import com.example.prototypeonkor.Classes.Requests.SnilsRequest
 import com.example.prototypeonkor.Objects.RetrofitInstance
 import com.example.prototypeonkor.databinding.ActivityNotificationBinding
 import kotlinx.coroutines.Dispatchers

@@ -9,12 +9,12 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.prototypeonkor.Classes.PrefsHelper
 import com.example.prototypeonkor.Objects.RetrofitInstance
 import com.example.prototypeonkor.Classes.User
-import com.example.prototypeonkor.APIService.SnilsRequest
 import com.example.prototypeonkor.databinding.ActivityProfileBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import androidx.lifecycle.lifecycleScope
+import com.example.prototypeonkor.Classes.Requests.SnilsRequest
 import com.example.prototypeonkor.Objects.SessionManager
 import com.example.prototypeonkor.Enums.Gender
 

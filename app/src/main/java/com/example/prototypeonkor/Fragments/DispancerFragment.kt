@@ -7,8 +7,8 @@ import android.view.View
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.prototypeonkor.APIService.SnilsRequest
 import com.example.prototypeonkor.Adapters.DispensaryAdapter
+import com.example.prototypeonkor.Classes.Requests.SnilsRequest
 import com.example.prototypeonkor.Objects.RetrofitInstance
 import com.example.prototypeonkor.R
 import kotlinx.coroutines.Dispatchers

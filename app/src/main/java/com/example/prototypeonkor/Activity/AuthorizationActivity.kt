@@ -7,8 +7,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
-import com.example.prototypeonkor.APIService.SnilsRequest
 import com.example.prototypeonkor.Classes.PrefsHelper
+import com.example.prototypeonkor.Classes.Requests.SnilsRequest
 import com.example.prototypeonkor.Objects.RetrofitInstance
 import com.example.prototypeonkor.Classes.User
 import com.example.prototypeonkor.databinding.ActivityAuthorizationBinding

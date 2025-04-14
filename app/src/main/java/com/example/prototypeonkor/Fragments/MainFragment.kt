@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.ImageButton
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
@@ -13,11 +12,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.prototypeonkor.Adapters.ProtocolsMainAdapter
 import com.example.prototypeonkor.Objects.RetrofitInstance
 import com.example.prototypeonkor.R
-import com.example.prototypeonkor.APIService.SnilsRequest
 import com.example.prototypeonkor.Activity.ExaminationsActivity
 import com.example.prototypeonkor.Adapters.AppointmentsMainAdapter
 import com.example.prototypeonkor.Adapters.DispensaryObservationMainAdapter
-import com.example.prototypeonkor.databinding.ActivityProfileBinding
+import com.example.prototypeonkor.Classes.Requests.SnilsRequest
 import com.example.prototypeonkor.databinding.FragmentMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.Dispatchers
