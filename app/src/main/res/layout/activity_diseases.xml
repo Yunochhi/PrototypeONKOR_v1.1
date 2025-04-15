@@ -46,74 +46,23 @@
 
 
 
-    <LinearLayout
-        android:id="@+id/resultLayout"
-        android:layout_width="371dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/topPanel"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/topPanel">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
 
-        <TextView
-            android:id="@+id/textViewMkbCode"
+
+    <LinearLayout
+            android:id="@+id/diseasesContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="МКБ: "
-            android:textColor="@color/black"
-            android:textSize="19sp"
-            android:textStyle="bold" />
+            android:orientation="vertical"
+            android:padding="16dp" />
+    </ScrollView>
 
-        <TextView
-            android:id="@+id/textViewDiseaseName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Название: "
-            android:textColor="@color/black"
-            android:textSize="19sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/textViewFrequencyVisits"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Частота посещений: "
-            android:textColor="@color/black"
-            android:textSize="19sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/textViewControlledIndicators"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Контролируемые показатели: "
-            android:textColor="@color/black"
-            android:textSize="19sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/textViewDurationObservation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Длительность наблюдения: "
-            android:textColor="@color/black"
-            android:textSize="19sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/textViewNote"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Примечание: "
-            android:textColor="@color/black"
-            android:textSize="19sp"
-            android:textStyle="bold"/>
-    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

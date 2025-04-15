@@ -10,6 +10,7 @@ import com.example.prototypeonkor.Classes.Notification
 import com.example.prototypeonkor.Classes.ProtocolInfo
 import com.example.prototypeonkor.Classes.Requests.ProtocolRequest
 import com.example.prototypeonkor.Classes.Requests.SnilsRequest
+import com.example.prototypeonkor.Classes.Requests.StudiesListRequest
 import com.example.prototypeonkor.Classes.User
 import okhttp3.ResponseBody
 import retrofit2.Response
@@ -21,10 +22,6 @@ import retrofit2.http.Path
 data class ProtocolFile(
     val fileName: String,
     val info: ProtocolInfo
-)
-
-data class MkbCodeRequest(
-    val mkbCode: String
 )
 
 interface PatientApiService {
@@ -60,9 +57,9 @@ interface PatientApiService {
     @POST("auth/register")
     suspend fun registerUser(@Body user: User): ResponseBody
 
-    //diseases
-    @POST("diseases/get_or")
-    suspend fun getDisease(@Body request: MkbCodeRequest): Response<Disease>
+    // diseases
+    @POST("diseases/get_sr")
+    suspend fun getStudiesList(@Body studiesListRequest: StudiesListRequest): Response<Map<String, List<String>>>
 
     //chat
     @POST("chat/user/{userId}")

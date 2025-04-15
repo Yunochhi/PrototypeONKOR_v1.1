@@ -2,12 +2,15 @@ package com.example.prototypeonkor.Activity
 
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
 import android.widget.ImageButton
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
+import com.example.prototypeonkor.Classes.DispensaryObservation
 import com.example.prototypeonkor.Classes.Requests.SnilsRequest
 import com.example.prototypeonkor.Objects.RetrofitInstance
 import com.example.prototypeonkor.R
@@ -44,6 +47,28 @@ class ActivityDiseases : AppCompatActivity() {
         exitButton.setOnClickListener { finish() }
 
     }
+
+    private fun displayDiseases(diseases: List<DispensaryObservation>) {
+        val inflater = LayoutInflater.from(this)
+        val container = binding.diseasesContainer
+
+        container.removeAllViews()
+
+        for (disease in diseases) {
+            val diseaseView = inflater.inflate(R.layout.disease_item, container, false)
+
+            diseaseView.findViewById<TextView>(R.id.textViewMkbCode).text = "МКБ:"
+            diseaseView.findViewById<TextView>(R.id.textViewDiseaseName).text = "Название: ${disease.disease}"
+            diseaseView.findViewById<TextView>(R.id.textViewFrequencyVisits).text = "Частота посещений: "
+            diseaseView.findViewById<TextView>(R.id.textViewControlledIndicators).text = "Контролируемые показатели:"
+            diseaseView.findViewById<TextView>(R.id.textViewDurationObservation).text = "Длительность наблюдения:"
+            diseaseView.findViewById<TextView>(R.id.textViewNote).text = "Примечание:"
+
+            container.addView(diseaseView)
+        }
+    }
+
+
     private suspend fun fetchDiseaseInfo() {
         try {
             val snilsRequest = SnilsRequest(snils)
@@ -52,11 +77,11 @@ class ActivityDiseases : AppCompatActivity() {
             }
 
             if (dispensaries.isNotEmpty()) {
-                val diseaseName = dispensaries.firstOrNull()?.disease
                 withContext(Dispatchers.Main) {
-                    binding.textViewDiseaseName.text = "Название: $diseaseName"
+                    displayDiseases(dispensaries)
                 }
             }
+
 
         } catch (e: Exception) {
             withContext(Dispatchers.Main) {

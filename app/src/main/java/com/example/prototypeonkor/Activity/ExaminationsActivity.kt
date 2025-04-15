@@ -2,11 +2,22 @@ package com.example.prototypeonkor.Activity
 
 import android.os.Bundle
 import android.widget.ImageButton
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.prototypeonkor.APIService.PatientApiService
+import com.example.prototypeonkor.Objects.RetrofitInstance
+import com.example.prototypeonkor.Classes.Requests.StudiesListRequest
+import com.example.prototypeonkor.Classes.Requests.SnilsRequest
 import com.example.prototypeonkor.R
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import retrofit2.Response
+import com.example.prototypeonkor.Enums.Gender
 
 class ExaminationsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,8 +30,59 @@ class ExaminationsActivity : AppCompatActivity() {
             insets
         }
 
+        val textViewStudies = findViewById<TextView>(R.id.textViewStudies)
+        val snils = intent.getStringExtra("SNILS")
+
+        if (snils != null) {
+            getUserInfoAndFetchStudies(snils, textViewStudies)
+        } else {
+            textViewStudies.text = "Ошибка: SNILS не был передан."
+        }
+
         val exitButton = findViewById<ImageButton>(R.id.backBtn)
         exitButton.setOnClickListener { finish() }
 
+    }
+
+    private fun getUserInfoAndFetchStudies(snils: String, textViewStudies: TextView) {
+        val snilsRequest = SnilsRequest(snils)
+
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val response = RetrofitInstance.apiService.getUserInfo(snilsRequest)
+
+                if (response.isSuccessful) {
+                    val user = response.body()
+                    val age = user?.age ?: 0
+                    val gender = when (user?.gender) {
+                        Gender.MALE -> "MALE"
+                        Gender.FEMALE -> "FEMALE"
+                        else -> ""
+                    }
+                    val studiesListRequest = StudiesListRequest(age, gender)
+
+                    val studiesResponse = RetrofitInstance.apiService.getStudiesList(studiesListRequest)
+
+                    if (studiesResponse.isSuccessful) {
+                        val studies = studiesResponse.body()?.get("studies") ?: emptyList()
+                        withContext(Dispatchers.Main) {
+                            textViewStudies.text = studies.joinToString("\n")
+                        }
+                    } else {
+                        withContext(Dispatchers.Main) {
+                            textViewStudies.text = "Ошибка: ${studiesResponse.code()}"
+                        }
+                    }
+                } else {
+                    withContext(Dispatchers.Main) {
+                        textViewStudies.text = "Ошибка: ${response.code()}"
+                    }
+                }
+            } catch (e: Exception) {
+                withContext(Dispatchers.Main) {
+                    textViewStudies.text = "Ошибка: ${e.message}"
+                }
+            }
+        }
     }
 }

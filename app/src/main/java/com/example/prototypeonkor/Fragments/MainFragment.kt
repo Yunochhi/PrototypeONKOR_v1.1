@@ -46,10 +46,12 @@ class MainFragment : Fragment(R.layout.fragment_main) {
 
         view.findViewById<AppCompatImageButton>(R.id.genderObsBtn).setOnClickListener{
             val intent = Intent(view.context, ExaminationsActivity::class.java)
+            intent.putExtra("SNILS", snils)
             startActivity(intent)}
 
         view.findViewById<AppCompatImageButton>(R.id.ageObsBtn).setOnClickListener{
             val intent = Intent(view.context, ExaminationsActivity::class.java)
+            intent.putExtra("SNILS", snils)
             startActivity(intent)}
 
         view.findViewById<AppCompatImageButton>(R.id.sickObsBtn).setOnClickListener{
