@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.prototypeonkor.Activity.ActivityDiseases
 import com.example.prototypeonkor.Adapters.ProtocolsMainAdapter
 import com.example.prototypeonkor.Objects.RetrofitInstance
 import com.example.prototypeonkor.R
@@ -52,7 +53,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             startActivity(intent)}
 
         view.findViewById<AppCompatImageButton>(R.id.sickObsBtn).setOnClickListener{
-            val intent = Intent(view.context, ExaminationsActivity::class.java)
+            val intent = Intent(view.context, ActivityDiseases::class.java)
             startActivity(intent)}
 
 
