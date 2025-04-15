@@ -35,8 +35,6 @@ class ExaminationsActivity : AppCompatActivity() {
 
         if (snils != null) {
             getUserInfoAndFetchStudies(snils, textViewStudies)
-        } else {
-            textViewStudies.text = "Ошибка: SNILS не был передан."
         }
 
         val exitButton = findViewById<ImageButton>(R.id.backBtn)
@@ -68,14 +66,6 @@ class ExaminationsActivity : AppCompatActivity() {
                         withContext(Dispatchers.Main) {
                             textViewStudies.text = studies.joinToString("\n")
                         }
-                    } else {
-                        withContext(Dispatchers.Main) {
-                            textViewStudies.text = "Ошибка: ${studiesResponse.code()}"
-                        }
-                    }
-                } else {
-                    withContext(Dispatchers.Main) {
-                        textViewStudies.text = "Ошибка: ${response.code()}"
                     }
                 }
             } catch (e: Exception) {
