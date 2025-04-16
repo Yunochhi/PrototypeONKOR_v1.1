@@ -1,6 +1,7 @@
 package com.example.prototypeonkor.Activity
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
@@ -69,9 +70,7 @@ class ExaminationsActivity : AppCompatActivity() {
                     }
                 }
             } catch (e: Exception) {
-                withContext(Dispatchers.Main) {
-                    textViewStudies.text = "Ошибка: ${e.message}"
-                }
+                Log.e("ExaminationsActivity", "Исключение: ${e.message}", e)
             }
         }
     }

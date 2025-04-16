@@ -16,6 +16,7 @@ class DispensaryAdapter(private val dispensaries: List<DispensaryObservation>) :
         val nextAppointmentDate: TextView = view.findViewById(R.id.nextAppointmentDateView)
         val doctorName: TextView = view.findViewById(R.id.doctorNameView)
         val disease: TextView = view.findViewById(R.id.diseaseView)
+        val mkbCodes: TextView = view.findViewById(R.id.mkbCodesView)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder
@@ -33,6 +34,7 @@ class DispensaryAdapter(private val dispensaries: List<DispensaryObservation>) :
             nextAppointmentDate.text = dispensary.nextAppointmentDate
             doctorName.text = dispensary.doctorName
             disease.text = dispensary.disease
+            mkbCodes.text = dispensary.mkbCodes
         }
     }
     override fun getItemCount() = dispensaries.size

@@ -8,6 +8,7 @@ import com.example.prototypeonkor.Classes.Disease
 import com.example.prototypeonkor.Classes.DispensaryObservation
 import com.example.prototypeonkor.Classes.Notification
 import com.example.prototypeonkor.Classes.ProtocolInfo
+import com.example.prototypeonkor.Classes.Requests.MkbCodeRequest
 import com.example.prototypeonkor.Classes.Requests.ProtocolRequest
 import com.example.prototypeonkor.Classes.Requests.SnilsRequest
 import com.example.prototypeonkor.Classes.Requests.StudiesListRequest
@@ -60,6 +61,10 @@ interface PatientApiService {
     // diseases
     @POST("diseases/get_sr")
     suspend fun getStudiesList(@Body studiesListRequest: StudiesListRequest): Response<Map<String, List<String>>>
+
+    @POST("diseases/get_or")
+    suspend fun getDiseaseByMkbCode(@Body request: MkbCodeRequest): Response<Disease>
+
 
     //chat
     @POST("chat/user/{userId}")

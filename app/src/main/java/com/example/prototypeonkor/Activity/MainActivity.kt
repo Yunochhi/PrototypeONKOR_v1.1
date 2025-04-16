@@ -122,7 +122,7 @@ class MainActivity : AppCompatActivity() {
                     {
                         withContext(Dispatchers.IO)
                         {
-                            RetrofitInstance.apiService.addNotification(Notification(snilsRequest.snils, "Напоминание о визите!", description))
+                            RetrofitInstance.apiService.addNotification(Notification(snilsRequest.snils, "Напоминание о визите!", description, protocol.date))
                         }
                     }
                     sendNotification(description)

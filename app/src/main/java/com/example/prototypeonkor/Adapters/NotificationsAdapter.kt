@@ -14,6 +14,7 @@ class NotificationsAdapter(private val notifications: List<Notification>) : Recy
     {
         val header: TextView = view.findViewById(R.id.headerTextView)
         val description: TextView = view.findViewById(R.id.DescTextView)
+        val date: TextView = view.findViewById(R.id.DateTextView)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder
@@ -28,6 +29,7 @@ class NotificationsAdapter(private val notifications: List<Notification>) : Recy
         {
             header.text = notifications[position].header
             description.text = notifications[position].description
+            date.text = notifications[position].date.toString()
         }
     }
     override fun getItemCount() = notifications.size
