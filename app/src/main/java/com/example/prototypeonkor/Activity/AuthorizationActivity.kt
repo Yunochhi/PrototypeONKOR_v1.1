@@ -18,8 +18,9 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import retrofit2.Response
 
-//549 711 581 21
-//549 711 581 22
+//549 711 581 21 - 1 юзер
+//549 711 581 22 - 2 юзер
+//549 662 068 27 - 3 админ
 
 class AuthorizationActivity : AppCompatActivity() {
 
