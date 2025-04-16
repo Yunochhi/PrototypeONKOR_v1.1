@@ -1,33 +1,51 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     android:padding="10dp"
     android:background="@xml/bordermessage"
-    android:layout_marginTop="5dp">
-
+    android:layout_marginTop="5dp"
+    >
     <TextView
-        android:id="@+id/messageTextView"
+        android:id="@+id/nameTextView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:layout_marginRight="10dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="Вывод сообщения"
-        android:textSize="16sp"
+        android:text="Имя"
+        android:textSize="18sp"
         android:textStyle="bold"
-        android:textColor="@color/white" />
+        android:textColor="@color/black" />
 
-    <TextView
-        android:id="@+id/timeTextView"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="6"
-        android:gravity="bottom"
-        android:text="Время"
-        android:textStyle="bold"
-        android:textSize="15sp"
-        android:textColor="@color/black"
-        android:layout_marginStart="10dp"
-        android:layout_gravity="center" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal"
+        android:layout_marginEnd="10dp"
+        >
+        <TextView
+            android:id="@+id/messageTextView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_gravity="center_horizontal"
+            android:text="Вывод сообщения"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/timeTextView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="6"
+            android:gravity="bottom"
+            android:text="Время"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            android:layout_marginStart="14dp"
+            android:layout_gravity="center" />
+    </LinearLayout>
+
 </LinearLayout>

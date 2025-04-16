@@ -11,6 +11,6 @@ data class Chat(
 
     val createdAt: LocalDateTime,
 
-    var closedAt: LocalDateTime? = null,
-    var isActive: Boolean = true
+    var closedAt: LocalDateTime?,
+    var isActive: Boolean
 )

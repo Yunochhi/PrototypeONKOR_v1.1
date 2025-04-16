@@ -1,7 +1,7 @@
 package com.example.prototypeonkor.Objects
 
 import com.example.prototypeonkor.APIService.PatientApiService
-import com.example.prototypeonkor.Classes.Serializers.LocalDateTimeDeserializer
+import com.example.prototypeonkor.Classes.Serializers.LocalDateTimeSerializer
 import com.google.gson.GsonBuilder
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -12,15 +12,10 @@ object RetrofitInstance {
     private const val BASE_URL = "http://10.0.2.2:8080/api/v1/"
 
     val gson = GsonBuilder()
-        .setLenient()
-        .registerTypeAdapter(LocalDateTime::class.java, LocalDateTimeDeserializer())
+        .registerTypeAdapter(LocalDateTime::class.java, LocalDateTimeSerializer)
         .create()
 
     val apiService: PatientApiService by lazy {
-        Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create(gson))
-            .build()
-            .create(PatientApiService::class.java)
+        Retrofit.Builder().baseUrl(BASE_URL).addConverterFactory(GsonConverterFactory.create(gson)).build().create(PatientApiService::class.java)
     }
 }

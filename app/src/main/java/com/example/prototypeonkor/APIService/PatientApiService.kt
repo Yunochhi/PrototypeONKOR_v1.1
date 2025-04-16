@@ -74,5 +74,8 @@ interface PatientApiService {
     suspend fun getChatMessages(@Path("chatId") chatId: Long): Response<List<Message>>
 
     @GET("chat/user/{userId}/active")
-    fun getUserActiveChats(@Path("userId") userId: Long): Response<List<Chat>>
+    suspend fun getUserActiveChats(@Path("userId") userId: Long): Response<List<Chat>>
+
+    @GET("chat/admin/{adminId}/active")
+    suspend fun getAdminActiveChats(@Path("adminId") adminId: Long): Response<List<Chat>>
 }
