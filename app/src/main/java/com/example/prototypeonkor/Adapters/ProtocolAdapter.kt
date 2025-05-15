@@ -33,7 +33,7 @@ class ProtocolAdapter(private val protocols: List<ProtocolFile>, private val con
             timeTextView.text = protocol.info.time
             titleTextView.text = protocol.info.lpu
             investigationView.text = protocol.info.investigationName
-            fileTextView.text = "\uD83D\uDCE5 Скачать результат анализа"
+            fileTextView.text = "Результаты анализов"
             fileTextView.setOnClickListener { onFileClick(protocol.fileName) }
         }
     }
