@@ -9,7 +9,7 @@ import java.time.LocalDateTime
 
 object RetrofitInstance {
 
-    private const val BASE_URL = "http://10.0.2.2:8080/api/v1/"
+    private const val BASE_URL = "http://192.168.1.140:8080/api/v1/"
 
     val gson = GsonBuilder()
         .registerTypeAdapter(LocalDateTime::class.java, LocalDateTimeSerializer)
