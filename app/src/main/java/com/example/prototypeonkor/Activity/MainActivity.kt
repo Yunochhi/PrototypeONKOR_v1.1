@@ -117,7 +117,7 @@ class MainActivity : AppCompatActivity() {
                 RetrofitInstance.apiService.getNotifications(snilsRequest)
             }
 
-            appointments.filter { ChronoUnit.DAYS.between(LocalDate.now(), LocalDate.parse(it.date)) in 1..2 } .forEach { protocol -> val description = "Лечащий врач: ${protocol.doctorName}\nДата: ${protocol.date}\nВремя: ${protocol.time}"
+            appointments.filter { ChronoUnit.DAYS.between(LocalDate.now(), LocalDate.parse(it.date)) in 1..2 } .forEach { protocol -> val description = "Лечащий врач: ${protocol.doctorName}"
                     if (existingNotifs.none { it.description == description })
                     {
                         withContext(Dispatchers.IO)
